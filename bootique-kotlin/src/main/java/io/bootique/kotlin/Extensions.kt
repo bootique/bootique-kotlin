@@ -2,9 +2,12 @@ package io.bootique.kotlin
 
 import com.google.inject.Binder
 import com.google.inject.Module
+import com.google.inject.Scope
+import com.google.inject.Singleton
 import com.google.inject.binder.AnnotatedBindingBuilder
 import com.google.inject.binder.LinkedBindingBuilder
 import com.google.inject.binder.ScopedBindingBuilder
+import io.bootique.BQCoreModuleExtender
 import io.bootique.Bootique
 import io.bootique.command.Command
 import io.bootique.config.ConfigurationFactory
@@ -30,12 +33,28 @@ inline fun <reified T : Command> bootiqueCommand(block: Builder.() -> Unit): Com
 }
 
 // Guice
-fun <T : Any> LinkedBindingBuilder<T>.to(implementation: KClass<out T>): ScopedBindingBuilder {
+/**
+ * Rename from `to` to `toClass` since kotlin has built
+ * in extension function `to` for creating tuples.
+ */
+fun <T : Any> LinkedBindingBuilder<T>.toClass(implementation: KClass<out T>): ScopedBindingBuilder {
     return this.to(implementation.java)
 }
 
-inline fun <reified T : Any> LinkedBindingBuilder<in T>.to(): ScopedBindingBuilder {
+/**
+ * Rename from `to` to `toClass` since kotlin has built
+ * in extension function `to` for creating tuples.
+ */
+inline fun <reified T : Any> LinkedBindingBuilder<in T>.toClass(): ScopedBindingBuilder {
     return this.to(T::class.java)
+}
+
+fun BQCoreModuleExtender.addCommand(commandType: KClass<out Command>): BQCoreModuleExtender {
+    return this.addCommand(commandType.java)
+}
+
+fun BQCoreModuleExtender.setDefaultCommand(commandType: KClass<out Command>): BQCoreModuleExtender {
+    return this.setDefaultCommand(commandType.java)
 }
 
 fun <T : Any> Binder.bind(type: KClass<T>): AnnotatedBindingBuilder<T> {
@@ -46,6 +65,17 @@ inline fun <reified T : Any> Binder.bind(): AnnotatedBindingBuilder<T> {
     return this.bind(T::class.java)
 }
 
+fun ScopedBindingBuilder.asSingleton() {
+    this.inScope(Singleton::class)
+}
+
+fun ScopedBindingBuilder.inScope(scopeAnnotation: KClass<out Annotation>) {
+    this.`in`(scopeAnnotation.java)
+}
+
+fun ScopedBindingBuilder.inScope(scope: Scope) {
+    this.`in`(scope)
+}
 
 // Bootique
 fun Bootique.module(moduleClass: KClass<out Module>): Bootique {

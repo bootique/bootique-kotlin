@@ -8,19 +8,19 @@ import io.bootique.ConfigModule
 import io.bootique.cli.Cli
 import io.bootique.command.CommandOutcome
 import io.bootique.command.CommandWithMetadata
+import io.bootique.kotlin.addCommand
 import io.bootique.kotlin.bind
 import io.bootique.kotlin.bootiqueCommand
-import io.bootique.kotlin.to
+import io.bootique.kotlin.toClass
 
 class AppCommandModule : ConfigModule() {
     override fun configure(binder: Binder) {
         BQCoreModule
-            .contributeCommands(binder)
-            .addBinding()
-            .to(AppCommand::class)
+            .extend(binder)
+            .addCommand(AppCommand::class)
 
-        binder.bind(CommandRunner::class).to(CommandRunnerImpl::class)
-        binder.bind<CommandRunner>().to<CommandRunnerImpl>()
+        binder.bind(CommandRunner::class).toClass(CommandRunnerImpl::class)
+        binder.bind<CommandRunner>().toClass<CommandRunnerImpl>()
     }
 }
 
