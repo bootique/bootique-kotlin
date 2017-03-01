@@ -27,7 +27,7 @@
         <bootique-version>0.22-SNAPSHOT</bootique-version>
         <jetty-version>0.20-SNAPSHOT</jetty-version>
         <logback-version>0.14-SNAPSHOT</logback-version>
-        <kotlin-version>1.1.0-rc-91</kotlin-version>
+        <kotlin-version>1.1.0</kotlin-version>
     </properties>
 
     <scm>
@@ -43,20 +43,6 @@
             <url>https://api.bintray.com/maven/bootique/releases/bootique-kotlin/;publish=1</url>
         </repository>
     </distributionManagement>
-
-    <repositories>
-        <repository>
-            <id>Kotlin EAP</id>
-            <url>http://dl.bintray.com/kotlin/kotlin-eap-1.1</url>
-        </repository>
-    </repositories>
-
-    <pluginRepositories>
-        <pluginRepository>
-            <id>Kotlin EAP</id>
-            <url>http://dl.bintray.com/kotlin/kotlin-eap-1.1</url>
-        </pluginRepository>
-    </pluginRepositories>
 
     <dependencyManagement>
         <dependencies>

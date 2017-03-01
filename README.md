@@ -13,7 +13,7 @@ This project supports Kotlin 1.1.
 
 ```gradle
 compile("io.bootique.kotlin:bootique-kotlin:0.1")
-compile("org.jetbrains.kotlin:kotlin-stdlib-jre8:1.1.0-rc-91")
+compile("org.jetbrains.kotlin:kotlin-stdlib-jre8:1.1.0")
 ```
 
 ## Overview
@@ -72,7 +72,7 @@ java -jar app.jar --config=classpath:config.kts --config=classpath:config1.kts -
 
 That's it! You get autocompletion in IDE, and **code** for configuration!
 
-### Extension Function in Action
+### Extension Functions in Action:
 
 Bootstrap application:
 
