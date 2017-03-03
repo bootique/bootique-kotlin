@@ -3,7 +3,7 @@
 
 # Bootique Kotlin
 
-Provides extension function and features for smooth development with Bootique and Kotlin.
+Provides extension function and features for smooth development with [Bootique](http://bootique.io/) and [Kotlin](http://kotlinlang.org/).
 
 ## Kotlin
 
