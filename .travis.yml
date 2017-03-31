@@ -8,15 +8,15 @@ branches:
     - master
 
 script:
-  - 'if [ "$TRAVIS_SECURE_ENV_VARS" = "true" ]; then mvn clean source:jar javadoc:javadoc deploy --settings travis_settings.xml; fi'
-  - 'if [ "$TRAVIS_SECURE_ENV_VARS" = "false" ]; then mvn clean verify; fi'
+  - 'if [ "$TRAVIS_SECURE_ENV_VARS" = "true" ]; then mvn clean source:jar javadoc:javadoc deploy -U --settings travis_settings.xml; fi'
+  - 'if [ "$TRAVIS_SECURE_ENV_VARS" = "false" ]; then mvn clean verify -U; fi'
 
 # travis encrypt -r bootique/bootique-kotlin "CI_DEPLOY_USERNAME='name'"
 # travis encrypt -r bootique/bootique-kotlin "CI_DEPLOY_PASSWORD='password'"
 env:
   global:
-    - secure: ""
-    - secure: ""
+    - secure: "hCvBELRpz34a4pDNPF27n3ExcDJoUTe10Nj5QDqSon4JzU3ZWrNyrogiKEvOyTenTH3nIm69Y0fzofa9H872ELDoOYpv/rLynj3DbEa+qrmvEFfhMVMvqtgP0yeysttKMt49i+6/x2vANerD96DTwr5heu0gvC0Pl5C/pcvQYG3+5C7ruL4Ue+3Pv942J3YY2fbWNUatG2MFRtDT7RidJpiY+PlpPgMkJIYj9u22kWblsHwAxO4uX5MpipIaCVnTiBID3KPa29a5bOSVLirNLRYVgjsKjVykQC4ep6ebiWzRX1j5887L9Jh0OzAS8EMhPz4qQFNdFp8XEgmk0iwQc7848gxWPHThDOsKVUuHjIU9mLl3ACUQN6v0hMSXNNhvJo+RSez5zUKt88hcF19sVQ/3DKMwPGTNMwJu8JqVCckD96pxCZKkrZHrx6YXJnyjE/p+/Q4ARdYc10r8EZTddKlIFqpN3hC65J+emCnTEBUwCVI3sJ6lh1MT7UP5zkbDka4b3/jO03R6AilB+9w/p6OgmGgV/tj8I77E6IcjNqZDBT2/QANpUdHErrUZCMt7WZUkJGGVwrL2UMaXJ6P1P2sltVEbZJbgAT4Fuc4VZwDWH9IMYp7tGXyWcEr+WB+/JDDzVBCHSy4nqr+/P0QYWXGSCEj0tV3SJj0+ltq4eXY="
+    - secure: "B8LIHFOo4aFNYYQ5CSzWQ+KdKfxaWQQuXtpXeaqv1K9Ia+ncPrYzgO9e6M0PfcwdOq1z06Ob8LJ+mwB1O1hZYzB6SG9CC3fYMukamAyQnlRRym04mE84Cfu6FCfg8NCuAXMfozs1xeJUm8aWtlgbX8GzIXYeMi0GyGTe5kxoTTN6GzItbZ0insfcm0QSOg7nl+sVfJECablr5c9Xqc1O+IBhn35cTavNcGIvgUsdPMz04ftNX1p7z6mmQr193OxvpX4prAQAFSFdHNwGFOb7I9Kf4LKAj1Gm7teqiGyMwslUUJh9+gQEGn0Wx4E8BzgcZmTDoGUQmBYvpmE19B+M5JQs4h0NMIlHHHHntiUNsuyAajXdREQ/VREFxiJ3J7ltBtBhQN80Nhubo1tzTY0m5InldHCeWQ+zpTfP0cnDmPRxDOakpcNdFFcOaq1OU7h7xohtJbckZAuR+mY8o3fvUgqDGdhBcjYRzLXWalZiZCuE8IBTltHI2n3FdgjISAzz4Jk9DBpZmBfffiTWQq2DdDAxARwmDVkoka8xnkVE93a2ACICkUmB+k57Qw6xGVb/EBxvJVh0MMLxmpVws3upFs5e5gPFkxDbQLJLkgUlUtrDVf4IHBmcOmiTs2xT8shCUsBiZ9DkPZwCj+ir92hTNqlxXHC2XNsAWk0yqk4cSp8="
 
 cache:
   directories:
