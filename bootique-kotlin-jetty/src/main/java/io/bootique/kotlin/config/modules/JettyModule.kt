@@ -6,7 +6,6 @@ import io.bootique.jetty.server.ServerFactory
 
 /**
  * Configuration DSL for JettyModule.
- * TODO. Describe and test.
  *
  * @author Ibragimov Ruslan
  * @since 0.1

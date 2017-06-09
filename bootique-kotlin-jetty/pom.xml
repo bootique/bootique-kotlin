@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
@@ -8,12 +9,12 @@
         <version>0.4-SNAPSHOT</version>
     </parent>
 
-    <artifactId>bootique-kotlin</artifactId>
+    <artifactId>bootique-kotlin-jetty</artifactId>
     <packaging>jar</packaging>
 
-    <name>bootique-kotlin: Kotlin-Native APIs for Bootique</name>
+    <name>bootique-kotlin-jetty: Kotlin extensions for jetty module.</name>
     <description>
-        Provides extension function and features for smooth development with Bootique and Kotlin.
+        Provides extension function and features for smooth development with Bootique Jetty and Kotlin.
     </description>
 
     <dependencies>
@@ -39,15 +40,20 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- Compile dependencies -->
+        <!-- Bootique Modules dependencies -->
         <dependency>
             <groupId>io.bootique</groupId>
             <artifactId>bootique</artifactId>
             <scope>compile</scope>
         </dependency>
         <dependency>
-            <groupId>org.jetbrains.kotlin</groupId>
-            <artifactId>kotlin-stdlib-jre8</artifactId>
+            <groupId>io.bootique.kotlin</groupId>
+            <artifactId>bootique-kotlin-config</artifactId>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.bootique.jetty</groupId>
+            <artifactId>bootique-jetty</artifactId>
             <scope>compile</scope>
         </dependency>
     </dependencies>

@@ -8,7 +8,8 @@ import kotlin.reflect.jvm.jvmName
 
 
 /**
- * TODO. Describe and test.
+ * Implementation of Bootique's ConfigurationFactory,
+ * which used .kts files instead of .yaml.
  *
  * @author Ibragimov Ruslan
  * @since 0.1
@@ -17,7 +18,6 @@ class KotlinScriptConfigurationFactory @Inject constructor(
     private val configurationSource: ConfigurationSource,
     private val kotlinScriptCompiler: KotlinScriptCompiler
 ): ConfigurationFactory {
-
     private val configs by lazy {
         val configs = mutableMapOf<String, Any>()
 

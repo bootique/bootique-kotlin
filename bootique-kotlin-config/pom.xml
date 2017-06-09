@@ -8,12 +8,12 @@
         <version>0.4-SNAPSHOT</version>
     </parent>
 
-    <artifactId>bootique-kotlin</artifactId>
+    <artifactId>bootique-kotlin-config</artifactId>
     <packaging>jar</packaging>
 
-    <name>bootique-kotlin: Kotlin-Native APIs for Bootique</name>
+    <name>bootique-kotlin-config: Kotlin configuration module.</name>
     <description>
-        Provides extension function and features for smooth development with Bootique and Kotlin.
+        Provides extension function and features for writing configuration files for Bootique with Kotlin Scripting.
     </description>
 
     <dependencies>
@@ -48,6 +48,18 @@
         <dependency>
             <groupId>org.jetbrains.kotlin</groupId>
             <artifactId>kotlin-stdlib-jre8</artifactId>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.bootique.kotlin</groupId>
+            <artifactId>bootique-kotlin</artifactId>
+            <scope>compile</scope>
+        </dependency>
+
+        <!-- Kotlin optional dependencies -->
+        <dependency>
+            <groupId>org.jetbrains.kotlin</groupId>
+            <artifactId>kotlin-script-util</artifactId>
             <scope>compile</scope>
         </dependency>
     </dependencies>

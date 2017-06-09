@@ -1,3 +1,8 @@
+## 0.4
+
+* #1 Update Kotlin to 1.1.2 
+* #2 Split kotlin module to number of modules. 
+
 ## 0.3
 
 * Initial release

@@ -1,10 +1,10 @@
 package io.bootique.kotlin.config
 
-import org.jetbrains.kotlin.script.jsr223.KotlinJsr223JvmDaemonLocalEvalScriptEngineFactory
+import org.jetbrains.kotlin.script.jsr223.KotlinJsr223JvmLocalScriptEngineFactory
 import java.net.URL
 
 /**
- * TODO. Describe and test.
+ * Read InputStream from URL and eval Kotlin script file via JSR223 Engine.
  *
  * @author Ibragimov Ruslan
  * @since 0.1
@@ -14,7 +14,7 @@ interface KotlinScriptCompiler {
 }
 
 class DefaultKotlinScriptCompiler : KotlinScriptCompiler {
-    private val factory = KotlinJsr223JvmDaemonLocalEvalScriptEngineFactory()
+    private val factory = KotlinJsr223JvmLocalScriptEngineFactory()
     private val scriptEngine = factory.scriptEngine
 
     @Suppress("UNCHECKED_CAST")
