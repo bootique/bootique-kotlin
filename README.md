@@ -7,21 +7,34 @@ Provides extension function and features for smooth development with [Bootique](
 
 ## Kotlin
 
-This project supports Kotlin 1.1.
+Kotlin 1.1.x used in project.
 
 ## Setup
 
 ```gradle
-compile("io.bootique.kotlin:bootique-kotlin:0.1")
-compile("org.jetbrains.kotlin:kotlin-stdlib-jre8:1.1.0")
+// Kotlin Extensions for Bootique
+compile("io.bootique.kotlin:bootique-kotlin:0.4-SNAPSHOT")
+
+// Kotlin Configuration Module
+compile("io.bootique.kotlin:bootique-kotlin-config:0.4-SNAPSHOT")
+
+// Kotlin Configuration and Extensions for Jetty. Also this adds dependency to bootique-jetty module.
+compile("io.bootique.kotlin:bootique-kotlin-jetty:0.4-SNAPSHOT")
+
+// Kotlin Configuration and Extensions for Logback. Also this adds dependency to bootique-logback module.
+compile("io.bootique.kotlin:bootique-kotlin-logback:0.4-SNAPSHOT")
+
+// Kotlin Configuration and Extensions for $moduleName$. Also this adds dependency to bootique-$moduleName$ module.
+compile("io.bootique.kotlin:bootique-kotlin-$moduleName$:0.4-SNAPSHOT")
 ```
 
 ## Overview
 
-This project contains two parts:
+This project contains three main parts:
 
-1. Extension functions
+1. Extension functions for Bootique
 2. Kotlin Script Configuration Module
+3. Configuration and Extensions for Modules
 
 ### Configuration Module
 
