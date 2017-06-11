@@ -2,15 +2,112 @@
 
 ## Bootique
 
-<!-- TODO -->
+See [Extensions.kt](https://github.com/bootique/bootique-kotlin/blob/master/bootique-kotlin/src/main/java/io/bootique/kotlin/Extensions.kt) for sources.
+
+Extension: `ConfigurationFactory.config`
+
+```kotlin
+// Using Java Api
+configurationFactory.config(Sample::class.java, "sample")
+
+// With Extension
+configurationFactory.config<Sample>("sample")
+
+// Type Inference
+@Singleton
+@Provides
+fun createAppConfiguration(configurationFactory: ConfigurationFactory): AppConfiguration {
+    return configurationFactory.config/* No Type Here */(configPrefix)
+}
+```
+
+Extension: `LinkedBindingBuilder.toClass`
+
+```kotlin
+binder.bind(CommandRunner::class).toClass(CommandRunnerImpl::class)
+```
+
+Extension: `Bootique.module`, `Bootique.modules`
+
+```kotlin
+Bootique
+    .app(*args)
+    .module<LogbackModule>()
+    .module(LogbackModule::class)
+    .modules(LogbackModule::class, JettyModule::class)
+    .autoLoadModules()
+```
 
 ## Bootique Jetty
 
-<!-- TODO -->
+Define empty config:
+
+```kotlin
+config {
+    jetty {
+
+    }
+}
+```
+
+Use autocompletion to define configuration.
+
+Use `httpConnector/httpsConnector` extensions to define connectors:
+
+```kotlin
+jetty {
+    httpConnector {
+        port = 4242
+        host = "192.168.0.1"
+        responseHeaderSize = 42
+        requestHeaderSize = 13
+    }
+}
+```
 
 ## Bootique Logback
 
-<!-- TODO -->
+Define empty config:
+
+```kotlin
+config {
+    logback {
+
+    }
+}
+```
+
+Number of extensions available inside config:
+
+```kotlin
+logback {
+    useLogbackConfig = false
+    debug = false
+    level = LogbackLevel.warn
+    logger(FactoryDSL::class, LogbackLevel.error)
+    consoleAppender {
+        target = ConsoleTarget.stderr
+        logFormat = "[%d{dd/MMM/yyyy:HH:mm:ss}] %t %-5p %c{1}: %m%n"
+    }
+    appender(ConsoleAppenderFactory().apply {
+        target = ConsoleTarget.stdout
+    })
+    fileAppender {
+        file = "abc"
+        timeBasedRollingPolicy {
+            setFileNamePattern("Abc_%d")
+        }
+        fixedWindowRollingPolicy {
+            setFileNamePattern("Abc_%d")
+            setFileSize("10mb")
+        }
+        sizeAndTimeRollingPolicy {
+            setFileNamePattern("mylog-%d{yyyy-MM-dd}.%i.txt")
+            setFileSize("10mb")
+        }
+    }
+}
+```
 
 ## Bootique Bom
 
