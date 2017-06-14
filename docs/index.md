@@ -8,15 +8,15 @@ Extension: `ConfigurationFactory.config`
 
 ```kotlin
 // Using Java Api
-configurationFactory.config(Sample::class.java, "sample")
+configurationFactory.config(SampleFactory::class.java, "sample")
 
 // With Extension
-configurationFactory.config<Sample>("sample")
+configurationFactory.config<SampleFactory>("sample")
 
 // Type Inference
 @Singleton
 @Provides
-fun createAppConfiguration(configurationFactory: ConfigurationFactory): AppConfiguration {
+fun createAppConfiguration(configurationFactory: ConfigurationFactory): SampleFactory {
     return configurationFactory.config/* No Type Here */(configPrefix)
 }
 ```
