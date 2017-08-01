@@ -10,7 +10,7 @@
 
     <groupId>io.bootique.kotlin</groupId>
     <artifactId>bootique-kotlin-parent</artifactId>
-    <version>0.5-SNAPSHOT</version>
+    <version>0.24-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>bootique-kotlin-parent: Parent of Kotlin/Bootique integration</name>
