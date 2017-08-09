@@ -27,9 +27,9 @@
     </modules>
 
     <properties>
-        <bootique-version>0.23</bootique-version>
-        <jetty-version>0.21</jetty-version>
-        <logback-version>0.15</logback-version>
+        <bootique-version>${project.version}</bootique-version>
+        <bootique-jetty-version>${project.version}</bootique-jetty-version>
+        <bootique-logback-version>${project.version}</bootique-logback-version>
 
         <kotlin-version>1.1.2-4</kotlin-version>
         <dokka-version>0.9.14</dokka-version>
@@ -121,12 +121,12 @@
             <dependency>
                 <groupId>io.bootique.jetty</groupId>
                 <artifactId>bootique-jetty</artifactId>
-                <version>${jetty-version}</version>
+                <version>${bootique-jetty-version}</version>
             </dependency>
             <dependency>
                 <groupId>io.bootique.logback</groupId>
                 <artifactId>bootique-logback</artifactId>
-                <version>${logback-version}</version>
+                <version>${bootique-logback-version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
