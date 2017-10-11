@@ -7,7 +7,8 @@ fun main(args: Array<String>) {
     Bootique.app("--config=classpath:config.kts", "--config=classpath:config1.kts", "--server")
         .withKotlinConfig()
         .autoLoadModules()
-        .run()
+        .exec()
+        .exit()
 }
 
 data class TestConfig(val name: String, val products: List<String>)

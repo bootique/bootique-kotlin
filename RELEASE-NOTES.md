@@ -1,6 +1,7 @@
 ## 0.5
 
-* Update Kotlin to 1.1.51 
+* Added BQModuleProvider for bootique-kotlin-config module.
+* Kotlin updated to 1.1.51 
 
 ## 0.4
 
