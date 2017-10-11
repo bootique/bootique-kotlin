@@ -1,3 +1,7 @@
+## 0.5
+
+* Update Kotlin to 1.1.51 
+
 ## 0.4
 
 * #1 Update Kotlin to 1.1.2 
