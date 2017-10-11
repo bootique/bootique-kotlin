@@ -5,7 +5,7 @@
     <parent>
         <groupId>io.bootique.kotlin</groupId>
         <artifactId>bootique-kotlin-parent</artifactId>
-        <version>0.24</version>
+        <version>0.25-SNAPSHOT</version>
     </parent>
 
     <artifactId>bootique-kotlin-logback</artifactId>
