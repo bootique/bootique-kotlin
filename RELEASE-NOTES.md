@@ -1,3 +1,8 @@
+## 0.25
+
+* Kotlin updated to 1.2.0
+* Dependency on `kotlin-stdlib-jre8` replaced with `kotlin-stdlib-jdk8`
+
 ## 0.24
 
 * Added BQModuleProvider for bootique-kotlin-config module.

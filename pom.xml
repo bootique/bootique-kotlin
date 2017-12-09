@@ -28,9 +28,8 @@
 
     <properties>
         <bootique-version>${project.version}</bootique-version>
-
-        <kotlin-version>1.1.51</kotlin-version>
-        <dokka-version>0.9.14</dokka-version>
+        <kotlin-version>1.2.0</kotlin-version>
+        <dokka-version>0.9.15</dokka-version>
     </properties>
 
     <scm>
@@ -97,7 +96,7 @@
             </dependency>
             <dependency>
                 <groupId>org.jetbrains.kotlin</groupId>
-                <artifactId>kotlin-stdlib-jre8</artifactId>
+                <artifactId>kotlin-stdlib-jdk8</artifactId>
                 <version>${kotlin-version}</version>
             </dependency>
 
