@@ -1,11 +1,44 @@
 # Kotlin Extensions for Bootique and Bootique Modules
 
-TL;DR;
+## Overview
+
+`bootique-kotlin` contains following modules:
+
+1. Kotlin APIs and extensions for Bootique;
+2. Kotlin Script Configuration Module;
+3. Configuration and Extensions for Bootique Modules.
+
+## TL;DR;
+
 * Use `KotlinBootique` instead of `Bootique`;
 * Use `KotlinModule` instead of `Module`, you can use `KotlinModule` with `ConfigModule` (just inherit both);
 * Use `KotlinBQModuleProvider` instead of `BQModuleProvider`;
 * Use extensions defined in [Extensions.kt](https://github.com/bootique/bootique-kotlin/blob/master/bootique-kotlin/src/main/java/io/bootique/kotlin/extra/Extensions.kt);
 * Use `bootique-kotlin-configuration` module to benefit from configuration written in Kotlin.
+
+## Getting started
+
+Kotlin 1.2.x used in project.
+
+Latest stable version: [![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.bootique.kotlin/bootique-kotlin/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.bootique.kotlin/bootique-kotlin/)
+
+```kotlin
+// Kotlin Extensions for Bootique
+compile("io.bootique.kotlin:bootique-kotlin:0.24")
+
+// Kotlin Configuration Module
+compile("io.bootique.kotlin:bootique-kotlin-config:0.24")
+
+// Kotlin Configuration and Extensions for Jetty. Also this adds dependency to bootique-jetty module.
+compile("io.bootique.kotlin:bootique-kotlin-jetty:0.24")
+
+// Kotlin Configuration and Extensions for Logback. Also this adds dependency to bootique-logback module.
+compile("io.bootique.kotlin:bootique-kotlin-logback:0.24")
+
+// Kotlin Configuration and Extensions for $moduleName$. Also this adds dependency to bootique-$moduleName$ module.
+compile("io.bootique.kotlin:bootique-kotlin-$moduleName$:0.24")
+```
+
 
 ## Bootique
 
@@ -15,7 +48,7 @@ TL;DR;
 
 ```kotlin
 fun main(args: Array<String>) {
-    KotlinBootique(arrayOf("--server"))
+    KotlinBootique(args)
         .module(ApplicationModule::class)
         .exec()
         .exit()
@@ -119,6 +152,70 @@ typeLiteral<Array<String>>()
 // Key
 key<List<Callable<A>>>()
 ```
+
+## Configuration Module
+
+Use Kotlin Script for configuration really simple:
+
+1. Create script
+2. Override `ConfigurationFactory`
+
+### Configuration with Kotlin can be defined in Kotlin Script file:
+
+```kotlin
+import io.bootique.kotlin.config.modules.config
+import io.bootique.kotlin.config.modules.httpConnector
+import io.bootique.kotlin.config.modules.jetty
+
+config {
+    jetty {
+        httpConnector {
+            port = 4242
+            host = "0.0.0.0"
+        }
+    }
+}
+```
+
+### Enable Kotlin Script Configuration in Bootique:
+
+With extension:
+
+```kotlin
+fun main(args: Array<String>) {
+    KotlinBootique(args)
+        .withKotlinConfig() // Extension function
+        .autoLoadModules()
+        .exec()
+        .exit()
+}
+```
+
+Using `BQModuleProvider`:
+
+```kotlin
+fun main(args: Array<String>) {
+    KotlinBootique(args)
+        .module(KotlinConfigModuleProvider())
+        .autoLoadModules()
+        .exec()
+        .exit()
+}
+```
+
+You can pass this file as always to bootique:
+
+```bash
+./bin/application --config=classpath:config.kts --server
+```
+
+It's even support multiple files (each file contains map of configs):
+
+```bash
+./bin/application --config=classpath:config.kts --config=classpath:config1.kts --server
+```
+
+That's it! You get autocomplete in IDE, and **code** for configuration!
 
 ## Bootique Jetty
 
@@ -275,3 +372,8 @@ logback {
 
 <!-- TODO -->
 
+## WIP
+
+* We still adding DSL for existing modules
+* There are lack of tests
+* Kotlin Script Startup time can be optimized
