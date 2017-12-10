@@ -4,7 +4,6 @@ import com.google.inject.Inject
 import io.bootique.config.ConfigurationFactory
 import io.bootique.config.ConfigurationSource
 import io.bootique.type.TypeRef
-import kotlin.reflect.jvm.jvmName
 
 
 /**
@@ -30,20 +29,22 @@ class KotlinScriptConfigurationFactory @Inject constructor(
         configs
     }
 
-    override fun <T : Any?> config(expectedType: Class<T>, prefix: String): T {
+    override fun <T : Any> config(expectedType: Class<T>, prefix: String): T {
         val type = configs[prefix] ?: throw RuntimeException("Config for prefix '$prefix' not found.")
 
         if (type::class.java.isAssignableFrom(expectedType)) {
             @Suppress("UNCHECKED_CAST")
             return type as T
         } else {
-            throw RuntimeException("Expected type ${expectedType::class.jvmName}, actual type ${type::class.jvmName} for prefix '$prefix'")
+            throw RuntimeException("Expected type ${expectedType::class.qualifiedName}, actual type ${type::class.qualifiedName} for prefix '$prefix'")
         }
     }
 
-    override fun <T : Any?> config(type: TypeRef<out T>?, prefix: String?): T {
-        TODO("Not Yet Implemented. Please, fail an issues https://github.com/bootique/bootique-kotlin if you see this" +
-            " message.")
+    override fun <T : Any> config(type: TypeRef<out T>, prefix: String): T {
+        TODO("""
+            | Not Yet Implemented.
+            | Please, fail an issues https://github.com/bootique/bootique-kotlin if you see this message.
+        """.trimMargin())
     }
 }
 

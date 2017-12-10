@@ -1,10 +1,10 @@
 package io.bootique.kotlin.sample
 
-import io.bootique.Bootique
 import io.bootique.kotlin.config.withKotlinConfig
+import io.bootique.kotlin.core.KotlinBootique
 
 fun main(args: Array<String>) {
-    Bootique.app("--config=classpath:config.kts", "--config=classpath:config1.kts", "--server")
+    KotlinBootique(arrayOf("--config=classpath:config.kts", "--config=classpath:config1.kts", "--server"))
         .withKotlinConfig()
         .autoLoadModules()
         .exec()

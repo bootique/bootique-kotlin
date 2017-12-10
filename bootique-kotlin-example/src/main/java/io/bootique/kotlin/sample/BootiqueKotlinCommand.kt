@@ -8,19 +8,20 @@ import io.bootique.ConfigModule
 import io.bootique.cli.Cli
 import io.bootique.command.CommandOutcome
 import io.bootique.command.CommandWithMetadata
-import io.bootique.kotlin.addCommand
-import io.bootique.kotlin.bind
-import io.bootique.kotlin.bootiqueCommand
-import io.bootique.kotlin.toClass
+import io.bootique.kotlin.extra.addCommand
+import io.bootique.kotlin.extra.bootiqueCommand
+import io.bootique.kotlin.guice.KotlinBinder
+import io.bootique.kotlin.guice.KotlinModule
 
-class AppCommandModule : ConfigModule() {
+class AppCommandModule : KotlinModule, ConfigModule() {
+    override fun configure(binder: KotlinBinder) {
+        binder.bind(CommandRunner::class).to(CommandRunnerImpl::class)
+    }
+
     override fun configure(binder: Binder) {
         BQCoreModule
             .extend(binder)
             .addCommand(AppCommand::class)
-
-        binder.bind(CommandRunner::class).toClass(CommandRunnerImpl::class)
-        binder.bind<CommandRunner>().toClass<CommandRunnerImpl>()
     }
 }
 
@@ -35,7 +36,7 @@ class CommandRunnerImpl : CommandRunner {
 }
 
 class AppCommand @Inject constructor(
-    val runner: Provider<CommandRunner>
+    private val runner: Provider<CommandRunner>
 ) : CommandWithMetadata(commandMetadata) {
 
     override fun run(cli: Cli): CommandOutcome {

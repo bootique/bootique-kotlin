@@ -4,7 +4,7 @@ import com.google.inject.Provides
 import com.google.inject.Singleton
 import io.bootique.ConfigModule
 import io.bootique.config.ConfigurationFactory
-import io.bootique.kotlin.config
+import io.bootique.kotlin.extra.config
 
 data class AppConfiguration(val name: String)
 

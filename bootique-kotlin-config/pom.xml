@@ -56,10 +56,14 @@
             <scope>compile</scope>
         </dependency>
 
-        <!-- Kotlin optional dependencies -->
         <dependency>
             <groupId>org.jetbrains.kotlin</groupId>
             <artifactId>kotlin-script-util</artifactId>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jetbrains.kotlin</groupId>
+            <artifactId>kotlin-compiler</artifactId>
             <scope>compile</scope>
         </dependency>
     </dependencies>

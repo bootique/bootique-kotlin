@@ -1,8 +1,8 @@
 package io.bootique.kotlin.config.modules
 
-import com.google.inject.Module
 import io.bootique.BQCoreModule
 import io.bootique.BQModuleProvider
+import io.bootique.kotlin.core.KotlinBQModuleProvider
 
 /**
  * [BQModuleProvider] for [KotlinConfigModule].
@@ -10,10 +10,7 @@ import io.bootique.BQModuleProvider
  * @author Ibragimov Ruslan
  * @since 0.5
  */
-class KotlinConfigModuleProvider : BQModuleProvider {
-    override fun module(): Module = KotlinConfigModule()
-
-    override fun overrides(): MutableCollection<Class<out Module>> {
-        return mutableListOf(BQCoreModule::class.java)
-    }
+class KotlinConfigModuleProvider : KotlinBQModuleProvider {
+    override val module = KotlinConfigModule()
+    override val overrides = listOf(BQCoreModule::class)
 }

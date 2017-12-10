@@ -1,16 +1,53 @@
 # Kotlin Extensions for Bootique and Bootique Modules
 
+TL;DR;
+* Use `KotlinBootique` instead of `Bootique`;
+* Use `KotlinModule` instead of `Module`, you can use `KotlinModule` with `ConfigModule` (just inherit both);
+* Use `KotlinBQModuleProvider` instead of `BQModuleProvider`;
+* Use extensions defined in [Extensions.kt](https://github.com/bootique/bootique-kotlin/blob/master/bootique-kotlin/src/main/java/io/bootique/kotlin/extra/Extensions.kt);
+* Use `bootique-kotlin-configuration` module to benefit from configuration written in Kotlin.
+
 ## Bootique
 
-See [Extensions.kt](https://github.com/bootique/bootique-kotlin/blob/master/bootique-kotlin/src/main/java/io/bootique/kotlin/Extensions.kt) for sources.
+### Replacement for Bootique
 
-Extension: `ConfigurationFactory.config`
+`bootique-kotlin` provides replacement for `Bootique` class - `KotlinBootique`:
+
+```kotlin
+fun main(args: Array<String>) {
+    KotlinBootique(arrayOf("--server"))
+        .module(ApplicationModule::class)
+        .exec()
+        .exit()
+}
+```
+
+So no need for extensions for `Bootique` class, `KotlinBootique` provides best experience for developing Bootique apps with Kotlin.
+
+### KotlinBQModuleProvider
+
+`KotlinBQModuleProvider` - interface to implement in Bootique Kotlin application instead of `BQModuleProvider`.
+
+```kotlin
+class ApplicationModuleProvider : KotlinBQModuleProvider {
+    override val module = ApplicationModule()
+    override val overrides = listOf(BQCoreModule::class)
+    override val dependencies = listOf(KotlinConfigModule::class)
+}
+```
+
+You can see how declarative become module provider.
+
+### Extension: `ConfigurationFactory.config`
 
 ```kotlin
 // Using Java Api
 configurationFactory.config(SampleFactory::class.java, "sample")
 
 // With Extension
+configurationFactory.config(SampleFactory::class, "sample")
+
+// With Extension, reified generics
 configurationFactory.config<SampleFactory>("sample")
 
 // Type Inference
@@ -21,21 +58,66 @@ fun createAppConfiguration(configurationFactory: ConfigurationFactory): SampleFa
 }
 ```
 
-Extension: `LinkedBindingBuilder.toClass`
+### Extension: `BQCoreModuleExtender.addCommand`
+
+Straightforward and easy to use extension for contributing commands.
 
 ```kotlin
-binder.bind(CommandRunner::class).toClass(CommandRunnerImpl::class)
+BQCoreModule
+    .extend(binder)
+    .addCommand(ApplicationCommand::class)
 ```
 
-Extension: `Bootique.module`, `Bootique.modules`
+### Extension: `BQCoreModuleExtender.setDefaultCommand`
+
+Also extension for `setDefaultCommand` available.
 
 ```kotlin
-Bootique
-    .app(*args)
-    .module<LogbackModule>()
-    .module(LogbackModule::class)
-    .modules(LogbackModule::class, JettyModule::class)
-    .autoLoadModules()
+BQCoreModule
+    .extend(binder)
+    .setDefaultCommand(ApplicationCommand::class)
+```
+
+### Extensions: 
+
+See [Extensions.kt](https://github.com/bootique/bootique-kotlin/blob/master/bootique-kotlin/src/main/java/io/bootique/kotlin/extra/Extensions.kt) for sources.
+
+### Deprecated Extensions:
+
+These extensions deprecated and deleted in 0.25 in favor of `KotlinModule` and `KotlinBootique`.
+
+* `LinkedBindingBuilder.toClass`
+* `ScopedBindingBuilder.asSingleton`
+* `ScopedBindingBuilder.inScope`
+* `Binder.bind`
+* `Bootique.module`
+* `Bootique.modules`
+
+## Guice
+
+### KotlinModule
+
+`bootique-kotlin` introduces new module interface to use with kotlin: `KotlinModule`
+
+```kotlin
+class ApplicationModule : KotlinModule {
+    override fun configure(binder: KotlinBinder) {
+        binder.bind(ShareCountService::class).to(DefaultShareCountService::class).asSingleton()
+        binder.bind(HttpClient::class).to(DefaultHttpClient::class).asSingleton()
+    }
+}
+```
+
+### Extensions
+
+There are few function to help work with `TypeLiteral` and `Key`.
+
+```kotlin
+// TypeLiteral
+typeLiteral<Array<String>>()
+
+// Key
+key<List<Callable<A>>>()
 ```
 
 ## Bootique Jetty
