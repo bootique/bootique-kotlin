@@ -30,13 +30,13 @@ class KotlinScriptConfigurationFactory @Inject constructor(
     }
 
     override fun <T : Any> config(expectedType: Class<T>, prefix: String): T {
-        val type = configs[prefix] ?: throw RuntimeException("Config for prefix '$prefix' not found.")
+        val config = configs[prefix] ?: throw RuntimeException("Config for prefix '$prefix' not found.")
 
-        if (type::class.java.isAssignableFrom(expectedType)) {
+        if (config::class.java.isAssignableFrom(expectedType)) {
             @Suppress("UNCHECKED_CAST")
-            return type as T
+            return config as T
         } else {
-            throw RuntimeException("Expected type ${expectedType::class.qualifiedName}, actual type ${type::class.qualifiedName} for prefix '$prefix'")
+            throw RuntimeException("Expected type ${expectedType::class.qualifiedName}, actual type ${config::class.qualifiedName} for prefix '$prefix'")
         }
     }
 
