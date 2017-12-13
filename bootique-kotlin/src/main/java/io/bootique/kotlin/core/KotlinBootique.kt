@@ -1,5 +1,6 @@
 package io.bootique.kotlin.core
 
+import com.google.inject.Key
 import com.google.inject.Module
 import io.bootique.BQModuleOverrideBuilder
 import io.bootique.BQModuleProvider
@@ -71,7 +72,7 @@ interface KotlinBootiqueInterface {
     /**
      * [Bootique.createRuntime]
      */
-    fun createRuntime(): BQRuntime
+    fun createRuntime(): KotlinBQRuntime
 
     /**
      * [Bootique.exec]
@@ -151,8 +152,8 @@ class KotlinBootique(
         return this
     }
 
-    override fun createRuntime(): BQRuntime {
-        return bootique.createRuntime()
+    override fun createRuntime(): KotlinBQRuntime {
+        return DefaultKotlinBQRuntime(bootique.createRuntime())
     }
 
     override fun exec(): CommandOutcome {
@@ -166,4 +167,63 @@ interface KotlinBQModuleOverrideBuilder<T> : BQModuleOverrideBuilder<T> {
      * [BQModuleOverrideBuilder.with]
      */
     fun with(moduleType: KClass<out Module>): T
+}
+
+interface KotlinBQRuntime {
+
+    /**
+     * [BQRuntime.getBootLogger]
+     */
+    val bootLogger: BootLogger
+
+    /**
+     * [BQRuntime.getArgs]
+     */
+    val args: Array<String>
+
+    /**
+     * [BQRuntime.getInstance]
+     */
+    fun <T : Any> getInstance(type: KClass<T>): T
+
+    /**
+     * [BQRuntime.getInstance]
+     */
+    fun <T> getInstance(diKey: Key<T>): T
+
+    /**
+     * [BQRuntime.run]
+     */
+    fun run(): CommandOutcome
+
+    /**
+     * [BQRuntime.shutdown]
+     */
+    fun shutdown()
+}
+
+class DefaultKotlinBQRuntime(
+    private val runtime: BQRuntime
+) : KotlinBQRuntime {
+    override val bootLogger: BootLogger
+        get() = runtime.bootLogger
+
+    override val args: Array<String>
+        get() = runtime.args
+
+    override fun <T : Any> getInstance(type: KClass<T>): T {
+        return runtime.getInstance(type.java)
+    }
+
+    override fun <T> getInstance(diKey: Key<T>): T {
+        return runtime.getInstance(diKey)
+    }
+
+    override fun run(): CommandOutcome {
+        return runtime.run()
+    }
+
+    override fun shutdown() {
+        return runtime.shutdown()
+    }
 }
