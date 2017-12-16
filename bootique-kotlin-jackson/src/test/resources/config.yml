@@ -1,0 +1,5 @@
+test:
+  name: Foo Bar
+  names:
+    - Foo
+    - Bar

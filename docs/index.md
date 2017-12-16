@@ -5,8 +5,9 @@
 `bootique-kotlin` contains following modules:
 
 1. Kotlin APIs and extensions for Bootique;
-2. Kotlin Script Configuration Module;
-3. Configuration and Extensions for Bootique Modules.
+1. Kotlin Script Configuration Module;
+1. Configuration and Extensions for Bootique Modules;
+1. `JacksonService` which provides `ObjectMapper` with enabled `KotlinModule`.
 
 ## TL;DR;
 
@@ -15,6 +16,7 @@
 * Use `KotlinBQModuleProvider` instead of `BQModuleProvider`;
 * Use extensions defined in [Extensions.kt](https://github.com/bootique/bootique-kotlin/blob/master/bootique-kotlin/src/main/java/io/bootique/kotlin/extra/Extensions.kt);
 * Use `bootique-kotlin-configuration` module to benefit from configuration written in Kotlin.
+* Use `bootique-kotlin-jackson` to get `ObjectMapper` with `KotlinModule`.
 
 ## Getting started
 
@@ -24,19 +26,22 @@ Latest stable version: [![Maven Central](https://maven-badges.herokuapp.com/mave
 
 ```kotlin
 // Kotlin Extensions for Bootique
-compile("io.bootique.kotlin:bootique-kotlin:0.24")
+compile("io.bootique.kotlin:bootique-kotlin:0.25")
 
 // Kotlin Configuration Module
-compile("io.bootique.kotlin:bootique-kotlin-config:0.24")
+compile("io.bootique.kotlin:bootique-kotlin-config:0.25")
+
+// Kotlin Configuration Module
+compile("io.bootique.kotlin:bootique-kotlin-jackson:0.25")
 
 // Kotlin Configuration and Extensions for Jetty. Also this adds dependency to bootique-jetty module.
-compile("io.bootique.kotlin:bootique-kotlin-jetty:0.24")
+compile("io.bootique.kotlin:bootique-kotlin-jetty:0.25")
 
 // Kotlin Configuration and Extensions for Logback. Also this adds dependency to bootique-logback module.
-compile("io.bootique.kotlin:bootique-kotlin-logback:0.24")
+compile("io.bootique.kotlin:bootique-kotlin-logback:0.25")
 
 // Kotlin Configuration and Extensions for $moduleName$. Also this adds dependency to bootique-$moduleName$ module.
-compile("io.bootique.kotlin:bootique-kotlin-$moduleName$:0.24")
+compile("io.bootique.kotlin:bootique-kotlin-$moduleName$:0.25")
 ```
 
 

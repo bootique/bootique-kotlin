@@ -21,6 +21,7 @@
     <modules>
         <module>bootique-kotlin</module>
         <module>bootique-kotlin-config</module>
+        <module>bootique-kotlin-jackson</module>
         <module>bootique-kotlin-jetty</module>
         <module>bootique-kotlin-logback</module>
         <module>bootique-kotlin-example</module>
@@ -28,7 +29,8 @@
 
     <properties>
         <bootique-version>${project.version}</bootique-version>
-        <kotlin-version>1.2.0</kotlin-version>
+        <kotlin-version>1.2.10</kotlin-version>
+        <jackson-kotlin-version>2.9.2</jackson-kotlin-version>
         <dokka-version>0.9.15</dokka-version>
     </properties>
 
@@ -103,6 +105,21 @@
                 <groupId>org.jetbrains.kotlin</groupId>
                 <artifactId>kotlin-compiler</artifactId>
                 <version>${kotlin-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-core</artifactId>
+                <version>2.9.3</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>2.9.3</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.module</groupId>
+                <artifactId>jackson-module-kotlin</artifactId>
+                <version>${jackson-kotlin-version}</version>
             </dependency>
 
             <!-- Modules -->

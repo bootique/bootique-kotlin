@@ -1,9 +1,10 @@
 ## 0.25
 
-* Kotlin updated to 1.2.0
+* Kotlin updated to 1.2.10
 * Dependency on `kotlin-stdlib-jre8` replaced with `kotlin-stdlib-jdk8`
 * New classes: `KotlinModule`, `KotlinBootique`, etc. See documentation for details.
 * Some extensions delete in favor of new classes. See documentation for details.
+* New module: `bootique-kotlin-jackson`.
 
 ## 0.24
 
