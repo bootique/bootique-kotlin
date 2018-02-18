@@ -5,6 +5,7 @@
 * New classes: `KotlinModule`, `KotlinBootique`, etc. See documentation for details.
 * Some extensions delete in favor of new classes. See documentation for details.
 * New module: `bootique-kotlin-jackson`.
+* #4 Upgrade to bootique-modules-parent 0.8
 
 ## 0.24
 
