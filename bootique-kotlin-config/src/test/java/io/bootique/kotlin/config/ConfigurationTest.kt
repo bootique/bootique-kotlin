@@ -1,4 +1,4 @@
-package io.bootique.kotlin
+package io.bootique.kotlin.config
 
 import io.bootique.kotlin.config.modules.config
 import org.junit.Assert.assertEquals
