@@ -16,7 +16,6 @@ jobs:
       if: branch = master AND type IN (push)
       jdk: oraclejdk9
       script:
-        -
         - mvn clean verify
     - stage: build
       if: branch = master AND type IN (push)
