@@ -34,4 +34,7 @@ class TestConfigProvider @Inject constructor(
     }
 }
 
-data class TestConfig(val name: String, val products: List<String>)
+data class TestConfig(
+    val name: String,
+    val products: List<String>
+)

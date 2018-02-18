@@ -1,9 +1,7 @@
-package io.bootique.kotlin
+package io.bootique.kotlin.config.jetty
 
 import io.bootique.jetty.server.ServerFactory
 import io.bootique.kotlin.config.modules.config
-import io.bootique.kotlin.config.modules.httpConnector
-import io.bootique.kotlin.config.modules.jetty
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
 import org.junit.Test

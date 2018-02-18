@@ -7,8 +7,8 @@ import io.bootique.logback.LogbackModule
 fun main(args: Array<String>) {
     KotlinBootique(args)
         .module(LogbackModule::class)
-        .module(KotlinConfigModule::class)
         .module(JettyModule::class)
+        .module(KotlinConfigModule::class)
         .exec()
         .exit()
 }

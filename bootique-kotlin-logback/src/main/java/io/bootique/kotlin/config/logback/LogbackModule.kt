@@ -1,5 +1,7 @@
-package io.bootique.kotlin.config.modules
+package io.bootique.kotlin.config.logback
 
+import io.bootique.kotlin.config.modules.BootiqueConfiguration
+import io.bootique.kotlin.config.modules.FactoryDSL
 import io.bootique.logback.LogbackContextFactory
 import io.bootique.logback.LogbackLevel
 import io.bootique.logback.LoggerFactory

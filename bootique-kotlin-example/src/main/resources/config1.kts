@@ -1,7 +1,7 @@
 
+import io.bootique.kotlin.config.jetty.httpConnector
+import io.bootique.kotlin.config.jetty.jetty
 import io.bootique.kotlin.config.modules.config
-import io.bootique.kotlin.config.modules.httpConnector
-import io.bootique.kotlin.config.modules.jetty
 
 config {
     jetty {

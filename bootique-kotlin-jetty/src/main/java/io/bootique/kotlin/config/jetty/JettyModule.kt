@@ -1,8 +1,10 @@
-package io.bootique.kotlin.config.modules
+package io.bootique.kotlin.config.jetty
 
 import io.bootique.jetty.connector.HttpConnectorFactory
 import io.bootique.jetty.connector.HttpsConnectorFactory
 import io.bootique.jetty.server.ServerFactory
+import io.bootique.kotlin.config.modules.BootiqueConfiguration
+import io.bootique.kotlin.config.modules.FactoryDSL
 
 /**
  * Configuration DSL for JettyModule.

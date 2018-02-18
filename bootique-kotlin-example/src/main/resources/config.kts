@@ -1,16 +1,16 @@
 
 import io.bootique.kotlin.config.modules.FactoryDSL
-import io.bootique.kotlin.config.modules.appender
+import io.bootique.kotlin.config.logback.appender
 import io.bootique.kotlin.config.modules.config
-import io.bootique.kotlin.config.modules.consoleAppender
-import io.bootique.kotlin.config.modules.debug
-import io.bootique.kotlin.config.modules.fileAppender
-import io.bootique.kotlin.config.modules.fixedWindowRollingPolicy
-import io.bootique.kotlin.config.modules.logback
-import io.bootique.kotlin.config.modules.logger
-import io.bootique.kotlin.config.modules.sizeAndTimeRollingPolicy
-import io.bootique.kotlin.config.modules.timeBasedRollingPolicy
-import io.bootique.kotlin.config.modules.useLogbackConfig
+import io.bootique.kotlin.config.logback.consoleAppender
+import io.bootique.kotlin.config.logback.debug
+import io.bootique.kotlin.config.logback.fileAppender
+import io.bootique.kotlin.config.logback.fixedWindowRollingPolicy
+import io.bootique.kotlin.config.logback.logback
+import io.bootique.kotlin.config.logback.logger
+import io.bootique.kotlin.config.logback.sizeAndTimeRollingPolicy
+import io.bootique.kotlin.config.logback.timeBasedRollingPolicy
+import io.bootique.kotlin.config.logback.useLogbackConfig
 import io.bootique.kotlin.sample.TestConfig
 import io.bootique.logback.LogbackLevel
 import io.bootique.logback.appender.ConsoleAppenderFactory
