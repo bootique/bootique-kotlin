@@ -4,7 +4,7 @@ import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
 /**
- * Useful extension function for creating new logger instance.
+ * Extension function for creating new logger instance.
  *
  * @author Ibragimov Ruslan
  * @since 0.25

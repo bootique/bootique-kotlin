@@ -16,6 +16,16 @@
         Provides extension function and features for smooth development with Bootique Logback and Kotlin.
     </description>
 
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>io.bootique.logback</groupId>
+                <artifactId>bootique-logback</artifactId>
+                <version>${bootique-version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
     <dependencies>
         <!-- Unit test dependencies -->
         <dependency>
@@ -46,13 +56,18 @@
             <scope>compile</scope>
         </dependency>
         <dependency>
-            <groupId>io.bootique.kotlin</groupId>
-            <artifactId>bootique-kotlin-config</artifactId>
+            <groupId>io.bootique.logback</groupId>
+            <artifactId>bootique-logback</artifactId>
             <scope>compile</scope>
         </dependency>
         <dependency>
-            <groupId>io.bootique.logback</groupId>
-            <artifactId>bootique-logback</artifactId>
+            <groupId>org.jetbrains.kotlin</groupId>
+            <artifactId>kotlin-stdlib-jdk8</artifactId>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jetbrains.kotlin</groupId>
+            <artifactId>kotlin-reflect</artifactId>
             <scope>compile</scope>
         </dependency>
     </dependencies>

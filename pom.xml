@@ -24,6 +24,7 @@
         <module>bootique-kotlin-jackson</module>
         <module>bootique-kotlin-jetty</module>
         <module>bootique-kotlin-logback</module>
+        <module>bootique-kotlin-undertow</module>
         <module>bootique-kotlin-example</module>
     </modules>
 
@@ -140,18 +141,6 @@
                 <artifactId>bootique-kotlin-config</artifactId>
                 <version>${project.version}</version>
                 <scope>compile</scope>
-            </dependency>
-
-            <!--  Bootique Modules Dependencies  -->
-            <dependency>
-                <groupId>io.bootique.jetty</groupId>
-                <artifactId>bootique-jetty</artifactId>
-                <version>${bootique-version}</version>
-            </dependency>
-            <dependency>
-                <groupId>io.bootique.logback</groupId>
-                <artifactId>bootique-logback</artifactId>
-                <version>${bootique-version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

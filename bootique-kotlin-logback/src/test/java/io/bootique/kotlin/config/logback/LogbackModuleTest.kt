@@ -1,10 +1,6 @@
 package io.bootique.kotlin.config.logback
 
-import io.bootique.kotlin.config.modules.FactoryDSL
-import io.bootique.kotlin.config.modules.config
-import io.bootique.logback.LogbackContextFactory
 import io.bootique.logback.LogbackLevel
-import io.bootique.logback.appender.ConsoleAppenderFactory
 import io.bootique.logback.appender.ConsoleTarget
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
@@ -12,53 +8,34 @@ import org.junit.Test
 
 class LogbackModuleTest {
 
-    @Test fun logbackSampleConfig() {
-        val config = config {
-            logback {
-                useLogbackConfig = false
-                debug = false
-                level = LogbackLevel.warn
-                logger(FactoryDSL::class, LogbackLevel.error)
-                consoleAppender {
+    @Test
+    fun logbackSampleConfig() {
+        val logFormat = "%-5p [%d{ISO8601,UTC}] %thread %c{20}: %m%n%rEx"
+        val config = logbackContextFactory(
+            logFormat = logFormat,
+            useLogbackConfig = false,
+            debugLogback = false,
+            level = LogbackLevel.warn,
+            loggers = mapOf(
+                logger(LogbackModuleTest::class, LogbackLevel.error),
+                logger("TestLogger", LogbackLevel.trace)
+            ),
+            appenders = listOf(
+                consoleAppender(
+                    logFormat = logFormat,
                     target = ConsoleTarget.stderr
-                    logFormat = "[%d{dd/MMM/yyyy:HH:mm:ss}] %t %-5p %c{1}: %m%n"
-                }
-                appender(ConsoleAppenderFactory().apply {
-                    target = ConsoleTarget.stdout
-                })
-                fileAppender {
-                    file = "abc"
-                    timeBasedRollingPolicy {
-                        setFileNamePattern("Abc_%d")
-                    }
-                    fixedWindowRollingPolicy {
-                        setFileNamePattern("Abc_%d")
-                        setFileSize("10mb")
-                    }
-                    sizeAndTimeRollingPolicy {
-                        setFileNamePattern("mylog-%d{yyyy-MM-dd}.%i.txt")
-                        setFileSize("10mb")
-                    }
-                }
-            }
-        }
+                ),
+                fileAppender(logFormat, "abc", timeBasedPolicy(
+                    fileNamePattern = "Abc_%d",
+                    totalSize = "2m",
+                    historySize = 1
+                ))
+            )
+        )
 
-        val logback = (config["log"] as LogbackContextFactory)
-
-        assertEquals(false, logback.useLogbackConfig)
-        assertEquals(false, logback.debug)
-        assertEquals(LogbackLevel.warn, logback.level)
-        assertNotNull(logback.loggers[FactoryDSL::class.java.`package`.name])
-        assertEquals(3, logback.appenders.size)
-    }
-
-    @Test fun logbackConfig() {
-        val config = config {
-            logback {
-
-            }
-        }
-
-        assertNotNull(config["log"])
+        assertEquals(LogbackLevel.warn, config.level)
+        assertNotNull(config.loggers[LogbackModuleTest::class.qualifiedName])
+        assertNotNull(config.loggers["TestLogger"])
+        assertEquals(2, config.appenders.size)
     }
 }

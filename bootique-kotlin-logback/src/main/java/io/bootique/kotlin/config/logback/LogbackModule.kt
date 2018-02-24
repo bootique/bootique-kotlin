@@ -1,90 +1,106 @@
 package io.bootique.kotlin.config.logback
 
-import io.bootique.kotlin.config.modules.BootiqueConfiguration
-import io.bootique.kotlin.config.modules.FactoryDSL
 import io.bootique.logback.LogbackContextFactory
 import io.bootique.logback.LogbackLevel
 import io.bootique.logback.LoggerFactory
 import io.bootique.logback.appender.AppenderFactory
 import io.bootique.logback.appender.ConsoleAppenderFactory
+import io.bootique.logback.appender.ConsoleTarget
 import io.bootique.logback.appender.FileAppenderFactory
 import io.bootique.logback.policy.FixedWindowPolicyFactory
+import io.bootique.logback.policy.RollingPolicyFactory
 import io.bootique.logback.policy.SizeAndTimeBasedPolicyFactory
 import io.bootique.logback.policy.TimeBasedPolicyFactory
 import kotlin.reflect.KClass
 
 /**
  * Configuration DSL for LogbackModule.
- * TODO. Describe and test.
  *
  * @author Ibragimov Ruslan
- * @since 0.1
+ * @since 0.25
  */
-inline fun BootiqueConfiguration.logback(body: (@FactoryDSL LogbackContextFactory).() -> Unit) {
-    this.addConfig("log" to LogbackContextFactory().also { factory ->
-        // Since default impl immutable, make sure that new map is mutable
-        factory.loggers = mutableMapOf()
-        factory.appenders = mutableListOf()
-        body(factory)
-    })
+fun logbackContextFactory(
+    logFormat: String,
+    level: LogbackLevel = LogbackLevel.info,
+    loggers: Map<String, LoggerFactory> = mapOf(),
+    appenders: List<AppenderFactory> = listOf(),
+    useLogbackConfig: Boolean = false,
+    debugLogback: Boolean = false
+) = LogbackContextFactory().also {
+    it.setLogFormat(logFormat)
+    it.level = level
+    it.loggers = loggers
+    it.appenders = appenders
+    it.setUseLogbackConfig(useLogbackConfig)
+    it.setDebugLogback(debugLogback)
 }
 
-fun (@FactoryDSL LogbackContextFactory).logger(`package`: String, level: LogbackLevel) {
-    this.loggers.put(`package`, LoggerFactory().also {
-        it.setLevel(level)
-    })
+fun logger(
+    name: String,
+    level: LogbackLevel = LogbackLevel.info
+): Pair<String, LoggerFactory> {
+    return name to loggerFactory(level)
 }
 
-var (@FactoryDSL LogbackContextFactory).debug: Boolean
-    get() = false
-    set(value) = this.setDebugLogback(value)
-
-var (@FactoryDSL LogbackContextFactory).useLogbackConfig: Boolean
-    get() = false
-    set(value) = this.setUseLogbackConfig(value)
-
-fun (@FactoryDSL LogbackContextFactory).logger(clazz: KClass<*>, level: LogbackLevel) {
-    this.loggers.put(clazz.java.`package`.name, LoggerFactory().also {
-        it.setLevel(level)
-    })
+fun logger(
+    klass: KClass<*>,
+    level: LogbackLevel = LogbackLevel.info
+): Pair<String, LoggerFactory> {
+    return klass.qualifiedName!! to loggerFactory(level)
 }
 
-fun (@FactoryDSL LogbackContextFactory).appender(appenderFactory: AppenderFactory) {
-    this.appenders.add(appenderFactory)
+fun loggerFactory(
+    level: LogbackLevel = LogbackLevel.info
+) = LoggerFactory().also {
+    it.setLevel(level);
 }
 
-fun (@FactoryDSL LogbackContextFactory).consoleAppender(body: (@FactoryDSL ConsoleAppenderFactory).() -> Unit) {
-    ConsoleAppenderFactory().also { factory ->
-        body(factory)
-        this.appenders.add(factory)
-    }
+fun fileAppender(
+    logFormat: String,
+    file: String,
+    rollingPolicy: RollingPolicyFactory
+) = FileAppenderFactory().also {
+    it.logFormat = logFormat
+    it.file = file
+    it.rollingPolicy = rollingPolicy
 }
 
-fun (@FactoryDSL LogbackContextFactory).fileAppender(body: (@FactoryDSL FileAppenderFactory).() -> Unit) {
-    FileAppenderFactory().also { factory ->
-        body(factory)
-        this.appenders.add(factory)
-    }
+fun consoleAppender(
+    logFormat: String,
+    target: ConsoleTarget = ConsoleTarget.stdout
+) = ConsoleAppenderFactory().also {
+    it.logFormat = logFormat
+    it.target = target
 }
 
-fun (@FactoryDSL FileAppenderFactory).timeBasedRollingPolicy(body: (@FactoryDSL TimeBasedPolicyFactory).() -> Unit) {
-    TimeBasedPolicyFactory().also { factory ->
-        body(factory)
-        this.rollingPolicy = factory
-    }
+fun timeBasedPolicy(
+    fileNamePattern: String,
+    totalSize: String,
+    historySize: Int
+) = TimeBasedPolicyFactory().also {
+    it.setFileNamePattern(fileNamePattern)
+    it.setTotalSize(totalSize)
+    it.setHistorySize(historySize)
 }
 
-fun (@FactoryDSL FileAppenderFactory).fixedWindowRollingPolicy(body: (@FactoryDSL FixedWindowPolicyFactory).() -> Unit) {
-    FixedWindowPolicyFactory().also { factory ->
-        body(factory)
-        this.rollingPolicy = factory
-    }
+fun sizeTimeBasedPolicy(
+    fileNamePattern: String,
+    totalSize: String,
+    fileSize: String,
+    historySize: Int
+) = SizeAndTimeBasedPolicyFactory().also {
+    it.setFileNamePattern(fileNamePattern)
+    it.setTotalSize(totalSize)
+    it.setFileSize(fileSize)
+    it.setHistorySize(historySize)
 }
 
-fun (@FactoryDSL FileAppenderFactory).sizeAndTimeRollingPolicy(body: (@FactoryDSL SizeAndTimeBasedPolicyFactory).() ->
-Unit) {
-    SizeAndTimeBasedPolicyFactory().also { factory ->
-        body(factory)
-        this.rollingPolicy = factory
-    }
+fun fixedWindowPolicy(
+    fileNamePattern: String,
+    fileSize: String,
+    historySize: Int
+) = FixedWindowPolicyFactory().also {
+    it.setFileNamePattern(fileNamePattern)
+    it.setFileSize(fileSize)
+    it.setHistorySize(historySize)
 }

@@ -8,13 +8,23 @@
         <version>0.25-SNAPSHOT</version>
     </parent>
 
-    <artifactId>bootique-kotlin-config</artifactId>
+    <artifactId>bootique-kotlin-undertow</artifactId>
     <packaging>jar</packaging>
 
-    <name>bootique-kotlin-config: Kotlin configuration module.</name>
+    <name>bootique-kotlin-undertow: Kotlin extensions for undertow module.</name>
     <description>
-        Provides extension function and features for writing configuration files for Bootique with Kotlin Scripting.
+        Provides extension function and features for smooth development with Bootique Undertow and Kotlin.
     </description>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>io.bootique.undertow</groupId>
+                <artifactId>bootique-undertow</artifactId>
+                <version>${bootique-version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <dependencies>
         <!-- Unit test dependencies -->
@@ -39,15 +49,15 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- Compile dependencies -->
+         <!-- Bootique Modules dependencies -->
         <dependency>
             <groupId>io.bootique</groupId>
             <artifactId>bootique</artifactId>
             <scope>compile</scope>
         </dependency>
         <dependency>
-            <groupId>io.bootique.kotlin</groupId>
-            <artifactId>bootique-kotlin</artifactId>
+            <groupId>io.bootique.undertow</groupId>
+            <artifactId>bootique-undertow</artifactId>
             <scope>compile</scope>
         </dependency>
         <dependency>
@@ -57,17 +67,7 @@
         </dependency>
         <dependency>
             <groupId>org.jetbrains.kotlin</groupId>
-            <artifactId>kotlin-script-util</artifactId>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.jetbrains.kotlin</groupId>
             <artifactId>kotlin-reflect</artifactId>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.jetbrains.kotlin</groupId>
-            <artifactId>kotlin-compiler-embeddable</artifactId>
             <scope>compile</scope>
         </dependency>
     </dependencies>
