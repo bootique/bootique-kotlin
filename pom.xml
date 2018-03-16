@@ -30,7 +30,7 @@
 
     <properties>
         <bootique-version>${project.version}</bootique-version>
-        <kotlin-version>1.2.21</kotlin-version>
+        <kotlin-version>1.2.30</kotlin-version>
         <jackson-kotlin-version>2.9.2</jackson-kotlin-version>
         <jackson-version>2.9.3</jackson-version>
         <dokka-version>0.9.15</dokka-version>
