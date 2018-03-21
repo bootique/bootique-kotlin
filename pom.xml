@@ -10,7 +10,7 @@
 
     <groupId>io.bootique.kotlin</groupId>
     <artifactId>bootique-kotlin-parent</artifactId>
-    <version>0.25</version>
+    <version>0.26-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>bootique-kotlin-parent: Parent of Kotlin/Bootique integration</name>
@@ -39,7 +39,7 @@
     <scm>
         <developerConnection>scm:git:ssh://git@github.com/bootique/bootique-kotlin</developerConnection>
         <url>https://github.com/bootique/bootique-kotlin</url>
-        <tag>bootique-kotlin-parent-0.25</tag>
+        <tag>HEAD</tag>
     </scm>
 
     <distributionManagement>
