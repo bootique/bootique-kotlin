@@ -18,10 +18,15 @@ jobs:
       script:
         - mvn clean verify
     - stage: build
-      if: branch = master AND type IN (push)
+      if: branch = master AND type IN (push) AND repo = bootique/bootique-kotlin
       jdk: oraclejdk8
       script:
-        - mvn clean source:jar dokka:javadocJar deploy -U --settings travis_settings.xml
+        - mvn clean source:jar javadoc:javadoc deploy --settings travis_settings.xml
+    - stage: build
+      if: branch = master AND type IN (push) AND repo != bootique/bootique-kotlin
+      jdk: oraclejdk8
+      script:
+        - mvn clean verify
 
 # travis encrypt -r bootique/bootique-kotlin "CI_DEPLOY_USERNAME='name'"
 # travis encrypt -r bootique/bootique-kotlin "CI_DEPLOY_PASSWORD='password'"
