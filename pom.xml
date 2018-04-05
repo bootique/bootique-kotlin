@@ -31,8 +31,7 @@
     <properties>
         <bootique-version>${project.version}</bootique-version>
         <kotlin-version>1.2.30</kotlin-version>
-        <jackson-kotlin-version>2.9.2</jackson-kotlin-version>
-        <jackson-version>2.9.3</jackson-version>
+        <jackson-version>2.9.5</jackson-version>
         <dokka-version>0.9.15</dokka-version>
     </properties>
 
@@ -126,7 +125,7 @@
             <dependency>
                 <groupId>com.fasterxml.jackson.module</groupId>
                 <artifactId>jackson-module-kotlin</artifactId>
-                <version>${jackson-kotlin-version}</version>
+                <version>${jackson-version}</version>
             </dependency>
 
             <!-- Modules -->

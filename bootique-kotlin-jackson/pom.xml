@@ -61,6 +61,7 @@
             <artifactId>jackson-module-kotlin</artifactId>
             <scope>compile</scope>
         </dependency>
+        <!-- Note that the following two dependencies are also included transitively via Bootique core. -->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-core</artifactId>

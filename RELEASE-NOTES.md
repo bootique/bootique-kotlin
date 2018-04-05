@@ -1,3 +1,7 @@
+## 0.26
+
+* #6 Update Jackson to 2.9.5
+
 ## 0.25
 
 * Kotlin updated to 1.2.30
