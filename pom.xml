@@ -152,6 +152,10 @@
                     <artifactId>dokka-maven-plugin</artifactId>
                     <version>${dokka-version}</version>
                 </plugin>
+                <plugin>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.7.0</version>
+                </plugin>
             </plugins>
         </pluginManagement>
         <plugins>
