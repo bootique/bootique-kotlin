@@ -2,6 +2,7 @@
 
 * #6 Update Jackson to 2.9.5
 * #7 Update Kotlin
+* #8 Coroutines handlers/wrappers
 
 ## 0.25
 
