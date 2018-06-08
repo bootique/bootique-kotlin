@@ -5,7 +5,7 @@
     <parent>
         <groupId>io.bootique.modules.parent</groupId>
         <artifactId>bootique-modules-parent</artifactId>
-        <version>0.8</version>
+        <version>0.10</version>
     </parent>
 
     <groupId>io.bootique.kotlin</groupId>
@@ -29,10 +29,9 @@
     </modules>
 
     <properties>
-        <bootique-version>${project.version}</bootique-version>
-        <kotlin-version>1.2.41</kotlin-version>
-        <jackson-version>2.9.5</jackson-version>
-        <dokka-version>0.9.16</dokka-version>
+        <bootique.version>${project.version}</bootique.version>
+        <kotlin.version>1.2.41</kotlin.version>
+        <dokka.version>0.9.16</dokka.version>
     </properties>
 
     <scm>
@@ -80,65 +79,50 @@
             <dependency>
                 <groupId>io.bootique</groupId>
                 <artifactId>bootique</artifactId>
-                <version>${bootique-version}</version>
+                <version>${bootique.version}</version>
             </dependency>
             <dependency>
                 <groupId>io.bootique</groupId>
                 <artifactId>bootique-test</artifactId>
-                <version>${bootique-version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.slf4j</groupId>
-                <artifactId>slf4j-simple</artifactId>
-                <version>${slf4j.version}</version>
+                <version>${bootique.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.jetbrains.kotlin</groupId>
                 <artifactId>kotlin-script-util</artifactId>
-                <version>${kotlin-version}</version>
+                <version>${kotlin.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.jetbrains.kotlin</groupId>
                 <artifactId>kotlin-stdlib-jdk8</artifactId>
-                <version>${kotlin-version}</version>
+                <version>${kotlin.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.jetbrains.kotlin</groupId>
                 <artifactId>kotlin-compiler-embeddable</artifactId>
-                <version>${kotlin-version}</version>
+                <version>${kotlin.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.jetbrains.kotlin</groupId>
                 <artifactId>kotlin-reflect</artifactId>
-                <version>${kotlin-version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.fasterxml.jackson.core</groupId>
-                <artifactId>jackson-core</artifactId>
-                <version>${jackson-version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.fasterxml.jackson.core</groupId>
-                <artifactId>jackson-databind</artifactId>
-                <version>${jackson-version}</version>
+                <version>${kotlin.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.fasterxml.jackson.module</groupId>
                 <artifactId>jackson-module-kotlin</artifactId>
-                <version>${jackson-version}</version>
+                <version>${jackson.version}</version>
             </dependency>
 
             <!-- Modules -->
             <dependency>
                 <groupId>io.bootique.kotlin</groupId>
                 <artifactId>bootique-kotlin</artifactId>
-                <version>${project.version}</version>
+                <version>${bootique.version}</version>
                 <scope>compile</scope>
             </dependency>
             <dependency>
                 <groupId>io.bootique.kotlin</groupId>
                 <artifactId>bootique-kotlin-config</artifactId>
-                <version>${project.version}</version>
+                <version>${bootique.version}</version>
                 <scope>compile</scope>
             </dependency>
         </dependencies>
@@ -150,11 +134,7 @@
                 <plugin>
                     <groupId>org.jetbrains.dokka</groupId>
                     <artifactId>dokka-maven-plugin</artifactId>
-                    <version>${dokka-version}</version>
-                </plugin>
-                <plugin>
-                    <artifactId>maven-compiler-plugin</artifactId>
-                    <version>3.7.0</version>
+                    <version>${dokka.version}</version>
                 </plugin>
             </plugins>
         </pluginManagement>
@@ -162,7 +142,7 @@
             <plugin>
                 <groupId>org.jetbrains.kotlin</groupId>
                 <artifactId>kotlin-maven-plugin</artifactId>
-                <version>${kotlin-version}</version>
+                <version>${kotlin.version}</version>
                 <executions>
                     <execution>
                         <id>compile</id>
