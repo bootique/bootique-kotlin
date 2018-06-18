@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-     Licensed to the ObjectStyle LLC under one
+   Licensed to ObjectStyle LLC under one
    or more contributor license agreements.  See the NOTICE file
    distributed with this work for additional information
    regarding copyright ownership.  The ObjectStyle LLC licenses
