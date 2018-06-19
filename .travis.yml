@@ -16,20 +16,17 @@
 language: java
 
 jobs:
+  allow_failures:
+    - jdk: openjdk11
   include:
     - stage: build
       if: branch != master OR type IN (pull_request)
-      before_install:
-        - sudo add-apt-repository ppa:linuxuprising/java -y
-        - sudo apt-get update -q
-        - sudo apt-get install oracle-java10-installer -y
-        - java -Xmx32m -version
-        - javac -J-Xmx32m -version
+      jdk: openjdk11
       script:
         - mvn clean verify
     - stage: build
       if: branch != master OR type IN (pull_request)
-      jdk: oraclejdk9
+      jdk: oraclejdk10
       script:
         - mvn clean verify
     - stage: build
@@ -39,17 +36,12 @@ jobs:
         - mvn clean verify
     - stage: build
       if: branch = master AND type IN (push)
-      before_install:
-        - sudo add-apt-repository ppa:linuxuprising/java -y
-        - sudo apt-get update -q
-        - sudo apt-get install oracle-java10-installer -y
-        - java -Xmx32m -version
-        - javac -J-Xmx32m -version
+      jdk: openjdk11
       script:
         - mvn clean verify
     - stage: build
       if: branch = master AND type IN (push)
-      jdk: oraclejdk9
+      jdk: oraclejdk10
       script:
         - mvn clean verify
     - stage: build
