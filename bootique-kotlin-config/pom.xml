@@ -35,6 +35,21 @@
         Provides extension function and features for writing configuration files for Bootique with Kotlin Scripting.
     </description>
 
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.jetbrains.kotlin</groupId>
+                <artifactId>kotlin-script-util</artifactId>
+                <version>${kotlin.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jetbrains.kotlin</groupId>
+                <artifactId>kotlin-compiler-embeddable</artifactId>
+                <version>${kotlin.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
     <dependencies>
         <!-- Unit test dependencies -->
         <dependency>
