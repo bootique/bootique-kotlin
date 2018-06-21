@@ -16,8 +16,6 @@
 language: java
 
 jobs:
-  allow_failures:
-    - jdk: openjdk11
   include:
     - stage: build
       if: branch != master OR type IN (pull_request)
