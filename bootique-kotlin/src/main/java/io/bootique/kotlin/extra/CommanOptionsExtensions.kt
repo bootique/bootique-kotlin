@@ -19,25 +19,18 @@
 
 package io.bootique.kotlin.extra
 
-import io.bootique.config.ConfigurationFactory
-import kotlin.reflect.KClass
+import io.bootique.meta.application.CommandMetadata
+import io.bootique.meta.application.OptionMetadata
+import io.bootique.meta.application.OptionMetadata.Builder
 
 /**
- * Helper function to get configuration using reified generics.
- *
- * @author Ibragimov Ruslan
- * @since 0.1
- */
-inline fun <reified T : Any> ConfigurationFactory.config(prefix: String): T {
-    return this.config(T::class.java, prefix)
-}
-
-/**
- * Helper function to get configuration by [KClass].
+ * Helper function to create command option in DSL-style.
  *
  * @author Ruslan Ibragimov
- * @since 0.1
+ * @since 0.26
  */
-fun <T : Any> ConfigurationFactory.config(type: KClass<out T>, prefix: String): T {
-    return this.config(type.java, prefix)
+fun CommandMetadata.Builder.option(name: String, block: Builder.() -> Unit) {
+    val builder = OptionMetadata.builder(name)
+    block(builder)
+    addOption(builder.build())
 }
