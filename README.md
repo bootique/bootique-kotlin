@@ -24,4 +24,4 @@
 
 Provides extension function and features for smooth development with [Bootique](http://bootique.io/) and [Kotlin](http://kotlinlang.org/).
 
-[Getting started and Documentation](https://bootique.github.io/bootique-kotlin/).
+[Getting started and Documentation](https://bootique.io/docs/latest/bootique-kotlin-docs/).
