@@ -1,4 +1,4 @@
-## 0.26
+## 1.0.RC1
 
 * #6 Update Jackson to 2.9.5
 * #7 Update Kotlin

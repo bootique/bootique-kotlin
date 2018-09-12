@@ -67,7 +67,7 @@ inline fun <reified T : Command> bootiqueCommand(
  * Helper function to decorate command using [KClass].
  *
  * @author Ruslan Ibragimov
- * @since 0.26
+ * ## 1.0.RC1
  */
 fun BQCoreModuleExtender.decorateCommand(
     commandType: KClass<out Command>,

@@ -27,7 +27,7 @@ import io.bootique.meta.application.OptionMetadata.Builder
  * Helper function to create command option in DSL-style.
  *
  * @author Ruslan Ibragimov
- * @since 0.26
+ * ## 1.0.RC1
  */
 fun CommandMetadata.Builder.option(name: String, block: Builder.() -> Unit) {
     val builder = OptionMetadata.builder(name)

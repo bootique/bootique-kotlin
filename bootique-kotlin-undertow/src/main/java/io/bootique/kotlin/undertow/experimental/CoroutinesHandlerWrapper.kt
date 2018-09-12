@@ -23,7 +23,7 @@ package io.bootique.kotlin.undertow.experimental
  * Coroutines aware [io.undertow.server.HandlerWrapper] interface.
  *
  * @author Ibragimov Ruslan
- * @since 0.26
+ * ## 1.0.RC1
  */
 interface CoroutinesHandlerWrapper {
     fun wrap(handler: CoroutinesHandler): CoroutinesHandler
