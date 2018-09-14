@@ -26,7 +26,7 @@ import io.bootique.kotlin.undertow.experimental.CoroutinesHandlerWrapper
  * Handler wrapper which do nothing.
  *
  * @author Ibragimov Ruslan
- * ## 1.0.RC1
+ * @since 1.0.RC1
  */
 object NoopHandlerWrapper : CoroutinesHandlerWrapper {
     override fun wrap(handler: CoroutinesHandler) = handler
