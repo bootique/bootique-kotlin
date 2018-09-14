@@ -26,7 +26,8 @@ import org.junit.Assert.assertNotNull
 import org.junit.Test
 
 class JettyModuleTest {
-    @Test fun singleHttpConnector() {
+    @Test
+    fun `single http connector`() {
         val server = config {
             jetty {
                 httpConnector {
@@ -46,7 +47,8 @@ class JettyModuleTest {
         assertEquals(13, obj.requestHeaderSize)
     }
 
-    @Test fun jettyConfig() {
+    @Test
+    fun `jetty config`() {
         val config = config {
             jetty {
 

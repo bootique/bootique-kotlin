@@ -24,14 +24,13 @@ import io.bootique.BQModuleProvider
 import java.lang.reflect.Type
 import kotlin.reflect.KClass
 
-
 /**
  * Helper class to use APIs native to Kotlin in Guice.
  *
  * @author Ibragimov Ruslan
  * @since 0.25
  */
-interface KotlinBQModuleProvider: BQModuleProvider {
+interface KotlinBQModuleProvider : BQModuleProvider {
     val module: Module
 
     override fun module(): Module {

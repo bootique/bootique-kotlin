@@ -27,7 +27,8 @@ internal data class Sample(val text: String)
 
 class ConfigurationTest {
 
-    @Test fun singleConfig() {
+    @Test
+    fun `single config`() {
         val config = config {
             addConfig("Yoda" to Sample("Jedi"))
         }
@@ -35,7 +36,8 @@ class ConfigurationTest {
         assertEquals(Sample("Jedi"), config["Yoda"])
     }
 
-    @Test fun multipleConfigs() {
+    @Test
+    fun `multiple configs`() {
         val config = config {
             addConfig("Yoda" to Sample("Jedi"))
             addConfig("Vader" to Sample("Sith"))
