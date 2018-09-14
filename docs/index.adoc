@@ -17,6 +17,7 @@
 
 = Kotlin Extensions for Bootique and Bootique Modules
 :bootique_version: 0.25
+:bootique_snapshot_version: 1.0.RC1-SNAPSHOT
 :kotlin_version: 1.2.70
 
 == Overview
@@ -87,6 +88,24 @@ bootique-kotlin-logback:
 If you use different kotlin version, it's much simpler to include this libraries with proper version, instead of excluding library version of them and then including again.
 
 ====
+
+If you'd like to use snapshot versions, you have to add bootique snapshot repository:
+
+[source]
+----
+http://maven.objectstyle.org/nexus/content/repositories/bootique-snapshots/
+----
+
+For example in gradle it can be done this way:
+
+[source,kotlin]
+----
+repositories {
+    maven { setUrl("http://maven.objectstyle.org/nexus/content/repositories/bootique-snapshots/") }
+}
+----
+
+And then use snapshot version: *{bootique_snapshot_version}*.
 
 == Bootique
 
