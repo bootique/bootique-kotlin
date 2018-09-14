@@ -17,14 +17,8 @@
  * under the License.
  */
 
-package io.bootique.kotlin.sample
+import io.bootique.kotlin.config.modules.config
 
-import io.bootique.kotlin.core.KotlinBootique
-
-fun main(args: Array<String>) {
-    KotlinBootique(args)
-        .args("--server", "--config=classpath:config.kts")
-        .module(KotlinSampleModuleProvider())
-        .exec()
-        .exit()
+config {
+    addConfig("sample" to "Allons-y!")
 }

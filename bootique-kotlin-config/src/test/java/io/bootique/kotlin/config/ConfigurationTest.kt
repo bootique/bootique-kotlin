@@ -23,8 +23,9 @@ import io.bootique.kotlin.config.modules.config
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
-internal data class Sample(val text: String)
-
+/**
+ * @author Ruslan Ibragimov
+ */
 class ConfigurationTest {
 
     @Test
@@ -46,4 +47,6 @@ class ConfigurationTest {
         assertEquals(Sample("Jedi"), config["Yoda"])
         assertEquals(Sample("Sith"), config["Vader"])
     }
+
+    private data class Sample(val text: String)
 }

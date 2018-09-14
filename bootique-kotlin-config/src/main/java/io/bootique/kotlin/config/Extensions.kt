@@ -35,6 +35,12 @@ fun Bootique.withKotlinConfig(): Bootique {
         .with(KotlinConfigModule::class.java)
 }
 
+/**
+ * Extensions for config bootstrapping.
+ *
+ * @author Ibragimov Ruslan
+ * @since 0.25
+ */
 fun KotlinBootiqueInterface.withKotlinConfig(): KotlinBootiqueInterface {
     return this.override(BQCoreModule::class).with(KotlinConfigModule::class)
 }

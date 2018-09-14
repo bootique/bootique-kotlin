@@ -17,10 +17,11 @@
  * under the License.
  */
 
+import io.bootique.Bootique
+import io.bootique.jetty.server.ServerFactory
 import io.bootique.kotlin.config.logback.consoleAppender
 import io.bootique.kotlin.config.logback.logbackContextFactory
 import io.bootique.kotlin.config.logback.logger
-import io.bootique.kotlin.config.modules.FactoryDSL
 import io.bootique.kotlin.config.modules.config
 import io.bootique.kotlin.sample.TestConfig
 import io.bootique.logback.LogbackLevel
@@ -35,19 +36,20 @@ config {
             "OnePlus"
         )
     ))
-    "log" to logbackContextFactory(
+    addConfig("jetty" to ServerFactory())
+    addConfig("log" to logbackContextFactory(
         useLogbackConfig = false,
         debugLogback = false,
         level = LogbackLevel.warn,
         loggers = mapOf(
-            logger(FactoryDSL::class, LogbackLevel.error)
+            logger(Bootique::class, LogbackLevel.error)
         ),
         appenders = listOf(
             consoleAppender(
                 target = ConsoleTarget.stderr,
-                logFormat = "[%d{dd/MMM/yyyy:HH:mm:ss}] %t %-5p %c{1}: %m%n"
+                logFormat = "%t %-5p %c{1}: %m%n"
             )
         ),
         logFormat = "[%d{dd/MMM/yyyy:HH:mm:ss}] %t %-5p %c{1}: %m%n"
-    )
+    ))
 }

@@ -17,14 +17,29 @@
  * under the License.
  */
 
-package io.bootique.kotlin.sample
+package io.bootique.kotlin.guice
 
-import io.bootique.kotlin.core.KotlinBootique
+import org.junit.Assert.assertEquals
+import org.junit.Test
 
-fun main(args: Array<String>) {
-    KotlinBootique(args)
-        .args("--server", "--config=classpath:config.kts")
-        .module(KotlinSampleModuleProvider())
-        .exec()
-        .exit()
+/**
+ * @author Ruslan Ibragimov
+ */
+class KotlinGuiceExtensionsTest {
+
+    @Test
+    fun `test creation of guice key`() {
+        val k = key<List<String>>()
+
+        assertEquals(List::class.java, k.typeLiteral.rawType)
+        assertEquals("java.util.List<? extends java.lang.String>", k.typeLiteral.type.typeName)
+    }
+
+    @Test
+    fun `test creation of guice TypeLiteral`() {
+        val k = typeLiteral<List<String>>()
+
+        assertEquals(List::class.java, k.rawType)
+        assertEquals("java.util.List<? extends java.lang.String>", k.type.typeName)
+    }
 }

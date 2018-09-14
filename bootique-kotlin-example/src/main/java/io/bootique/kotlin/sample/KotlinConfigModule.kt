@@ -23,13 +23,26 @@ import com.google.inject.Provides
 import com.google.inject.Singleton
 import io.bootique.ConfigModule
 import io.bootique.config.ConfigurationFactory
+import io.bootique.jetty.JettyModuleProvider
+import io.bootique.kotlin.config.modules.KotlinConfigModuleProvider
+import io.bootique.kotlin.core.KotlinBQModuleProvider
 import io.bootique.kotlin.extra.config
+import io.bootique.logback.LogbackModuleProvider
 
 data class AppConfiguration(
     val name: String
 )
 
-class KotlinConfigModule : ConfigModule() {
+class KotlinSampleModuleProvider : KotlinBQModuleProvider {
+    override val module = KotlinSampleModule()
+    override val dependencies = listOf(
+        JettyModuleProvider(),
+        LogbackModuleProvider(),
+        KotlinConfigModuleProvider()
+    )
+}
+
+class KotlinSampleModule : ConfigModule() {
 
     @Singleton
     @Provides

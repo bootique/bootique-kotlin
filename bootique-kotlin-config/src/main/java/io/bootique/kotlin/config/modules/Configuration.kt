@@ -25,7 +25,9 @@ package io.bootique.kotlin.config.modules
  * @author Ibragimov Ruslan
  * @since 0.1
  */
-class BootiqueConfiguration(private val configs: MutableMap<String, Any> = mutableMapOf()) {
+class BootiqueConfiguration(
+    private val configs: MutableMap<String, Any> = mutableMapOf()
+) {
     fun addConfig(pair: Pair<String, Any>) = this.configs.put(pair.first, pair.second)
     fun getConfigs(): Map<String, Any> = configs
 }

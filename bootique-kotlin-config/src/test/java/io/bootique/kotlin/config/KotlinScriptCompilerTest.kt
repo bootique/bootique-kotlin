@@ -17,14 +17,25 @@
  * under the License.
  */
 
-package io.bootique.kotlin.sample
+package io.bootique.kotlin.config
 
-import io.bootique.kotlin.core.KotlinBootique
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertNotNull
+import org.junit.Test
+import java.net.URLClassLoader
 
-fun main(args: Array<String>) {
-    KotlinBootique(args)
-        .args("--server", "--config=classpath:config.kts")
-        .module(KotlinSampleModuleProvider())
-        .exec()
-        .exit()
+/**
+ * @author Ruslan Ibragimov
+ */
+class KotlinScriptCompilerTest {
+
+    @Test
+    fun `execute simple script config file`() {
+        val compiler = DefaultKotlinScriptCompiler()
+        val resource = URLClassLoader.getSystemResource("sample.kts")
+        val result = compiler.execute<Map<String, Any>>(resource)
+
+        assertNotNull(result)
+        assertEquals("Allons-y!", result["sample"])
+    }
 }
