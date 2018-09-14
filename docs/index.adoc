@@ -312,27 +312,29 @@ Define logback configuration:
 
 [source,kotlin]
 ----
-val factory = logbackContextFactory(
-    logFormat = "[%d{dd/MMM/yyyy:HH:mm:ss}] %t %-5p %c{1}: %m%n",
-    useLogbackConfig = false,
-    debugLogback = false,
-    level = LogbackLevel.warn,
-    loggers = mapOf(
-        logger(LogbackModuleTest::class, LogbackLevel.error),
-        logger("TestLogger", LogbackLevel.trace)
-    ),
-    appenders = listOf(
-        consoleAppender(
-            logFormat = "[%d{dd/MMM/yyyy:HH:mm:ss}] %t %-5p %c{1}: %m%n",
-            target = ConsoleTarget.stderr
+config {
+    addConfig("log" to logbackContextFactory(
+        logFormat = "[%d{dd/MMM/yyyy:HH:mm:ss}] %t %-5p %c{1}: %m%n",
+        useLogbackConfig = false,
+        debugLogback = false,
+        level = LogbackLevel.warn,
+        loggers = mapOf(
+            logger(LogbackModuleTest::class, LogbackLevel.error),
+            logger("TestLogger", LogbackLevel.trace)
         ),
-        fileAppender(logFormat, "abc", timeBasedPolicy(
-            fileNamePattern = "Abc_%d",
-            totalSize = "2m",
-            historySize = 1
-        ))
-    )
-)
+        appenders = listOf(
+            consoleAppender(
+                logFormat = "[%d{dd/MMM/yyyy:HH:mm:ss}] %t %-5p %c{1}: %m%n",
+                target = ConsoleTarget.stderr
+            ),
+            fileAppender(logFormat, "abc", timeBasedPolicy(
+                fileNamePattern = "Abc_%d",
+                totalSize = "2m",
+                historySize = 1
+            ))
+        )
+    ))
+}
 ----
 
 Use function for retrieving logger for class:
@@ -351,3 +353,16 @@ val logger = logger<SomeService<*>>()
 
 == Bootique Undertow
 
+Define undertow configuration:
+
+[source,kotlin]
+----
+config {
+    addConfig("undertow" to undertowFactory(
+        httpListeners = listOf(
+            httpListener(1337, "127.0.0,1")
+        ),
+        workerThreads = 42
+    ))
+}
+----
