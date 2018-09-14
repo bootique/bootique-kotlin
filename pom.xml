@@ -52,6 +52,7 @@
         <bootique.version>${project.version}</bootique.version>
         <kotlin.version>1.2.70</kotlin.version>
         <dokka.version>0.9.17</dokka.version>
+        <kotlin.code.style>official</kotlin.code.style>
     </properties>
 
     <scm>
