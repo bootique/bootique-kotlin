@@ -360,7 +360,7 @@ Define undertow configuration:
 config {
     addConfig("undertow" to undertowFactory(
         httpListeners = listOf(
-            httpListener(1337, "127.0.0,1")
+            httpListener(1337, "127.0.0.1")
         ),
         workerThreads = 42
     ))
