@@ -3,6 +3,7 @@
 * #6 Update Jackson to 2.9.5
 * #7 Update Kotlin
 * #8 Coroutines handlers/wrappers
+# #10 Kotlin stdlib should be provided dependency
 
 ## 0.25
 
