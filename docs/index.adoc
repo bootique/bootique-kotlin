@@ -19,6 +19,7 @@
 :bootique_version: 0.25
 :bootique_snapshot_version: 1.0.RC1-SNAPSHOT
 :kotlin_version: 1.2.70
+:toc:
 
 == Overview
 
@@ -109,7 +110,7 @@ And then use snapshot version: *{bootique_snapshot_version}*.
 
 == Bootique
 
-=== Replacement for Bootique
+=== KotlinBootique
 
 `bootique-kotlin` provides replacement for `Bootique` class - `KotlinBootique`:
 
@@ -183,11 +184,11 @@ BQCoreModule
     .setDefaultCommand(ApplicationCommand::class)
 ----
 
-=== Extensions:
+=== Extensions
 
 See https://github.com/bootique/bootique-kotlin/blob/master/bootique-kotlin/src/main/java/io/bootique/kotlin/extra/Extensions.kt[Extensions.kt] for sources.
 
-=== Deprecated Extensions:
+=== Deprecated Extensions
 
 These extensions deprecated and deleted in 0.25 in favor of `KotlinModule` and `KotlinBootique`.
 
@@ -198,9 +199,9 @@ These extensions deprecated and deleted in 0.25 in favor of `KotlinModule` and `
 * `Bootique.module`
 * `Bootique.modules`
 
-== Guice
+=== Guice
 
-=== KotlinModule
+==== KotlinModule
 
 `bootique-kotlin` introduces new module interface to use with kotlin: `KotlinModule`
 
@@ -214,7 +215,7 @@ class ApplicationModule : KotlinModule {
 }
 ----
 
-=== Extensions
+==== Extensions
 
 There are few function to help work with `TypeLiteral` and `Key`.
 
