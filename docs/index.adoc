@@ -43,7 +43,7 @@
 
 Kotlin *{kotlin_version}* used in project.
 
-Latest stable version: image:https://maven-badges.herokuapp.com/maven-central/io.bootique.kotlin/bootique-kotlin/badge.svg[Maven Central,link=https://maven-badges.herokuapp.com/maven-central/io.bootique.kotlin/bootique-kotlin/]
+Latest stable version: image:https://img.shields.io/maven-central/v/io.bootique.kotlin/bootique-kotlin.svg?colorB=brightgreen[Maven Central, link=https://search.maven.org/artifact/io.bootique.kotlin/bootique-kotlin/]
 
 Add dependency on needed parts in your `build.gradle`, or `pom.xml`:
 
