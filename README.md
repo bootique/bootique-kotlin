@@ -18,7 +18,7 @@
   -->
 
 [![Build Status](https://travis-ci.org/bootique/bootique-kotlin.svg)](https://travis-ci.org/bootique/bootique-kotlin)
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.bootique.kotlin/bootique-kotlin/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.bootique.kotlin/bootique-kotlin/)
+[![Maven Central](https://img.shields.io/maven-central/v/io.bootique.kotlin/bootique-kotlin.svg?colorB=brightgreen)](https://search.maven.org/artifact/io.bootique.kotlin/bootique-kotlin/)
 
 # Bootique Kotlin
 
