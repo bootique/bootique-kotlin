@@ -17,14 +17,17 @@
  * under the License.
  */
 
-package io.bootique.kotlin.undertow.experimental
+package io.bootique.kotlin.undertow.wrappers
+
+import io.bootique.kotlin.undertow.CoroutinesHandler
+import io.bootique.kotlin.undertow.CoroutinesHandlerWrapper
 
 /**
- * Coroutines aware [io.undertow.server.HandlerWrapper] interface.
+ * Handler wrapper which do nothing.
  *
  * @author Ibragimov Ruslan
  * @since 1.0.RC1
  */
-interface CoroutinesHandlerWrapper {
-    fun wrap(handler: CoroutinesHandler): CoroutinesHandler
+object NoopHandlerWrapper : CoroutinesHandlerWrapper {
+    override fun wrap(handler: CoroutinesHandler) = handler
 }
