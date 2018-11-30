@@ -68,6 +68,7 @@
         <dependency>
             <groupId>io.bootique.kotlin</groupId>
             <artifactId>bootique-kotlin</artifactId>
+            <version>${bootique.version}</version>
             <scope>compile</scope>
         </dependency>
         <dependency>

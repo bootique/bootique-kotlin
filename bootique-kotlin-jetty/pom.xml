@@ -78,6 +78,7 @@
         <dependency>
             <groupId>io.bootique.kotlin</groupId>
             <artifactId>bootique-kotlin-config</artifactId>
+            <version>${bootique.version}</version>
             <scope>compile</scope>
         </dependency>
         <dependency>

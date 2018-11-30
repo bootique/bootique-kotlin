@@ -127,20 +127,6 @@
                 <artifactId>kotlin-compiler-embeddable</artifactId>
                 <version>${kotlin.version}</version>
             </dependency>
-
-            <!-- Modules -->
-            <dependency>
-                <groupId>io.bootique.kotlin</groupId>
-                <artifactId>bootique-kotlin</artifactId>
-                <version>${bootique.version}</version>
-                <scope>compile</scope>
-            </dependency>
-            <dependency>
-                <groupId>io.bootique.kotlin</groupId>
-                <artifactId>bootique-kotlin-config</artifactId>
-                <version>${bootique.version}</version>
-                <scope>compile</scope>
-            </dependency>
         </dependencies>
     </dependencyManagement>
 
