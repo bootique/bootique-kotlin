@@ -15,43 +15,20 @@
 
 language: java
 
+jdk:
+  - oraclejdk8
+  - oraclejdk11
+  - openjdk-ea
+
+script:
+  - mvn clean verify
+
 jobs:
   include:
-    - stage: build
-      if: branch != master OR type IN (pull_request)
-      jdk: openjdk11
-      script:
-        - mvn clean verify
-    - stage: build
-      if: branch != master OR type IN (pull_request)
-      jdk: openjdk10
-      script:
-        - mvn clean verify
-    - stage: build
-      if: branch != master OR type IN (pull_request)
+    - stage: deploy
       jdk: oraclejdk8
-      script:
-        - mvn clean verify
-    - stage: build
-      if: branch = master AND type IN (push)
-      jdk: openjdk11
-      script:
-        - mvn clean verify
-    - stage: build
-      if: branch = master AND type IN (push)
-      jdk: openjdk10
-      script:
-        - mvn clean verify
-    - stage: build
-      if: branch = master AND type IN (push) AND repo = bootique/bootique-kotlin
-      jdk: oraclejdk8
-      script:
-        - mvn clean source:jar javadoc:javadoc deploy --settings travis_settings.xml
-    - stage: build
-      if: branch = master AND type IN (push) AND repo != bootique/bootique-kotlin
-      jdk: oraclejdk8
-      script:
-        - mvn clean verify
+      script: mvn clean source:jar javadoc:javadoc deploy -DskipTests --settings travis_settings.xml
+      if: branch IN (master, 1.0-STABLE) AND type IN (push) AND repo = bootique/bootique-kotlin
 
 # travis encrypt -r bootique/bootique-kotlin "CI_DEPLOY_USERNAME='name'"
 # travis encrypt -r bootique/bootique-kotlin "CI_DEPLOY_PASSWORD='password'"
