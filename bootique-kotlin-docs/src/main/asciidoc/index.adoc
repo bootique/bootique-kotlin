@@ -1,0 +1,386 @@
+// Licensed to ObjectStyle LLC under one
+// or more contributor license agreements.  See the NOTICE file
+// distributed with this work for additional information
+// regarding copyright ownership.  The ObjectStyle LLC licenses
+// this file to you under the Apache License, Version 2.0 (the
+// "License"); you may not use this file except in compliance
+// with the License.  You may obtain a copy of the License at
+//
+//   http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing,
+// software distributed under the License is distributed on an
+// "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+// KIND, either express or implied.  See the License for the
+// specific language governing permissions and limitations
+// under the License.
+
+:bq-header: _index/header.html
+
+= Kotlin Extensions for Bootique and Bootique Modules
+
+== Overview
+
+`bootique-kotlin` contains following modules:
+
+. Kotlin APIs and extensions for Bootique;
+. Kotlin Script Configuration Module;
+. Configuration and Extensions for Bootique Modules;
+. `JacksonService` which provides `ObjectMapper` with enabled `KotlinModule`.
+
+== TL;DR;
+
+* Use `KotlinBootique` instead of `Bootique`;
+* Use `KotlinModule` instead of `Module`, you can use `KotlinModule` with `ConfigModule` (just inherit both);
+* Use `KotlinBQModuleProvider` instead of `BQModuleProvider`;
+* Use extensions defined in https://github.com/bootique/bootique-kotlin/blob/master/bootique-kotlin/src/main/java/io/bootique/kotlin/extra/Extensions.kt[Extensions.kt];
+* Use `bootique-kotlin-configuration` module to benefit from configuration written in Kotlin.
+* Use `bootique-kotlin-jackson` to get `ObjectMapper` with `KotlinModule`.
+
+== Getting started
+
+Kotlin *{kotlin_version}* used in project.
+
+Latest stable version: image:https://img.shields.io/maven-central/v/io.bootique.kotlin/bootique-kotlin.svg?colorB=brightgreen[Maven Central, link=https://search.maven.org/artifact/io.bootique.kotlin/bootique-kotlin/]
+
+Add dependency on needed parts in your `build.gradle`, or `pom.xml`:
+
+
+[source,kotlin,subs="attributes"]
+----
+// Kotlin Extensions for Bootique
+compile("io.bootique.kotlin:bootique-kotlin:{bootique_version}")
+
+// Kotlin Configuration Module
+compile("io.bootique.kotlin:bootique-kotlin-config:{bootique_version}")
+
+// Kotlin Configuration Module
+compile("io.bootique.kotlin:bootique-kotlin-jackson:{bootique_version}")
+
+// Kotlin Configuration and Extensions for Jetty. Also this adds dependency to bootique-jetty module.
+compile("io.bootique.kotlin:bootique-kotlin-jetty:{bootique_version}")
+
+// Kotlin Configuration and Extensions for Logback. Also this adds dependency to bootique-logback module.
+compile("io.bootique.kotlin:bootique-kotlin-logback:{bootique_version}")
+
+// Kotlin Configuration and Extensions for $moduleName$. Also this adds dependency to bootique-$moduleName$ module.
+compile("io.bootique.kotlin:bootique-kotlin-$moduleName$:{bootique_version}")
+----
+
+[IMPORTANT]
+====
+`bootique-kotlin` modules doesn't include `kotlin-stdlib-jdk8`, or any other core kotlin libraries, since you can use newer kotlin version and usually you already have `kotlin-stdlib-jdk8` in runtime. So there are list of additional dependencies for different bootique-kotlin modules:
+
+----
+bootique-kotlin-config:
+  org.jetbrains.kotlin:kotlin-reflect
+  org.jetbrains.kotlin:kotlin-script-util
+  org.jetbrains.kotlin:kotlin-compiler-embeddable
+
+bootique-kotlin-jackson:
+  org.jetbrains.kotlin:kotlin-reflect
+
+bootique-kotlin-logback:
+  org.jetbrains.kotlin:kotlin-reflect
+----
+
+If you use different kotlin version, it's much simpler to include this libraries with proper version, instead of excluding library version of them and then including again.
+
+====
+
+If you'd like to use snapshot versions, you have to add bootique snapshot repository:
+
+[source]
+----
+https://maven.objectstyle.org/nexus/content/repositories/bootique-snapshots/
+----
+
+For example in gradle it can be done this way:
+
+[source,kotlin]
+----
+repositories {
+    maven { setUrl("http://maven.objectstyle.org/nexus/content/repositories/bootique-snapshots/") }
+}
+----
+
+And then use snapshot version: *{bootique_snapshot_version}*.
+
+== Bootique
+
+=== KotlinBootique
+
+`bootique-kotlin` provides replacement for `Bootique` class - `KotlinBootique`:
+
+[source,kotlin]
+----
+fun main(args: Array<String>) {
+    KotlinBootique(args)
+        .module(ApplicationModule::class)
+        .exec()
+        .exit()
+}
+----
+
+So no need for extensions for `Bootique` class, `KotlinBootique` provides best experience for developing Bootique apps with Kotlin.
+
+=== KotlinBQModuleProvider
+
+`KotlinBQModuleProvider` - interface to implement in Bootique Kotlin application instead of `BQModuleProvider`.
+
+[source,kotlin]
+----
+class ApplicationModuleProvider : KotlinBQModuleProvider {
+    override val module = ApplicationModule()
+    override val overrides = listOf(BQCoreModule::class)
+    override val dependencies = listOf(KotlinConfigModule::class)
+}
+----
+
+You can see how declarative become module provider.
+
+=== Extension: `ConfigurationFactory.config`
+
+[source,kotlin]
+----
+// Using Java Api
+configurationFactory.config(SampleFactory::class.java, "sample")
+
+// With Extension
+configurationFactory.config(SampleFactory::class, "sample")
+
+// With Extension, reified generics
+configurationFactory.config<SampleFactory>("sample")
+
+// Type Inference
+@Singleton
+@Provides
+fun createAppConfiguration(configurationFactory: ConfigurationFactory): SampleFactory {
+    return configurationFactory.config/* No Type Here */(configPrefix)
+}
+----
+
+=== Extension: `BQCoreModuleExtender.addCommand`
+
+Straightforward and easy to use extension for contributing commands.
+
+[source,kotlin]
+----
+BQCoreModule
+    .extend(binder)
+    .addCommand(ApplicationCommand::class)
+----
+
+=== Extension: `BQCoreModuleExtender.setDefaultCommand`
+
+Also extension for `setDefaultCommand` available.
+
+[source,kotlin]
+----
+BQCoreModule
+    .extend(binder)
+    .setDefaultCommand(ApplicationCommand::class)
+----
+
+=== Extensions
+
+See https://github.com/bootique/bootique-kotlin/blob/master/bootique-kotlin/src/main/java/io/bootique/kotlin/extra/Extensions.kt[Extensions.kt] for sources.
+
+=== Deprecated Extensions
+
+These extensions deprecated and deleted in 0.25 in favor of `KotlinModule` and `KotlinBootique`.
+
+* `LinkedBindingBuilder.toClass`
+* `ScopedBindingBuilder.asSingleton`
+* `ScopedBindingBuilder.inScope`
+* `Binder.bind`
+* `Bootique.module`
+* `Bootique.modules`
+
+=== Guice
+
+==== KotlinModule
+
+`bootique-kotlin` introduces new module interface to use with kotlin: `KotlinModule`
+
+[source,kotlin]
+----
+class ApplicationModule : KotlinModule {
+    override fun configure(binder: KotlinBinder) {
+        binder.bind(ShareCountService::class).to(DefaultShareCountService::class).asSingleton()
+        binder.bind(HttpClient::class).to(DefaultHttpClient::class).asSingleton()
+    }
+}
+----
+
+==== Extensions
+
+There are few function to help work with `TypeLiteral` and `Key`.
+
+[source,kotlin]
+----
+// TypeLiteral
+typeLiteral<Array<String>>()
+
+// Key
+key<List<Callable<A>>>()
+----
+
+== Configuration Module
+
+Use Kotlin Script for configuration really simple:
+
+. Create script
+. Override `ConfigurationFactory`
+
+=== Configuration with Kotlin can be defined in Kotlin Script file:
+
+[source,kotlin]
+----
+import io.bootique.kotlin.config.modules.config
+import io.bootique.kotlin.config.modules.httpConnector
+import io.bootique.kotlin.config.modules.jetty
+
+config {
+    jetty {
+        httpConnector {
+            port = 4242
+            host = "0.0.0.0"
+        }
+    }
+}
+----
+
+=== Enable Kotlin Script Configuration in Bootique:
+
+With extension:
+
+[source,kotlin]
+----
+fun main(args: Array<String>) {
+    KotlinBootique(args)
+        .withKotlinConfig() // Extension function
+        .autoLoadModules()
+        .exec()
+        .exit()
+}
+----
+
+Using `BQModuleProvider`:
+
+[source,kotlin]
+----
+fun main(args: Array<String>) {
+    KotlinBootique(args)
+        .module(KotlinConfigModuleProvider())
+        .autoLoadModules()
+        .exec()
+        .exit()
+}
+----
+
+You can pass this file as always to bootique:
+
+[source,bash]
+----
+./bin/application --config=classpath:config.kts --server
+----
+
+It's even support multiple files (each file contains map of configs):
+
+[source,bash]
+----
+./bin/application --config=classpath:config.kts --config=classpath:config1.kts --server
+----
+
+That's it! You get autocomplete in IDE, and *code* for configuration!
+
+== Bootique Jetty
+
+Define empty config:
+
+[source,kotlin]
+----
+config {
+    jetty {
+
+    }
+}
+----
+
+Use autocompletion to define configuration.
+
+Use `httpConnector/httpsConnector` extensions to define connectors:
+
+[source,kotlin]
+----
+jetty {
+    httpConnector {
+        port = 4242
+        host = "192.168.0.1"
+        responseHeaderSize = 42
+        requestHeaderSize = 13
+    }
+}
+----
+
+== Bootique Logback
+
+Define logback configuration:
+
+[source,kotlin]
+----
+config {
+    addConfig("log" to logbackContextFactory(
+        logFormat = "[%d{dd/MMM/yyyy:HH:mm:ss}] %t %-5p %c{1}: %m%n",
+        useLogbackConfig = false,
+        debugLogback = false,
+        level = LogbackLevel.warn,
+        loggers = mapOf(
+            logger(LogbackModuleTest::class, LogbackLevel.error),
+            logger("TestLogger", LogbackLevel.trace)
+        ),
+        appenders = listOf(
+            consoleAppender(
+                logFormat = "[%d{dd/MMM/yyyy:HH:mm:ss}] %t %-5p %c{1}: %m%n",
+                target = ConsoleTarget.stderr
+            ),
+            fileAppender(logFormat, "abc", timeBasedPolicy(
+                fileNamePattern = "Abc_%d",
+                totalSize = "2m",
+                historySize = 1
+            ))
+        )
+    ))
+}
+----
+
+Use function for retrieving logger for class:
+
+[source,kotlin]
+----
+val logger = logger<SomeService>()
+----
+
+Or if class is generic:
+
+[source,kotlin]
+----
+val logger = logger<SomeService<*>>()
+----
+
+== Bootique Undertow
+
+Define undertow configuration:
+
+[source,kotlin]
+----
+config {
+    addConfig("undertow" to undertowFactory(
+        httpListeners = listOf(
+            httpListener(1337, "127.0.0.1")
+        ),
+        workerThreads = 42
+    ))
+}
+----

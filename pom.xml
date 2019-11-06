@@ -45,6 +45,7 @@
         <module>bootique-kotlin-logback</module>
         <module>bootique-kotlin-undertow</module>
         <module>bootique-kotlin-example</module>
+        <module>bootique-kotlin-docs</module>
     </modules>
 
     <properties>
