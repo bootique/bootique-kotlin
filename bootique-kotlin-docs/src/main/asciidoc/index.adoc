@@ -139,7 +139,7 @@ class ApplicationModuleProvider : KotlinBQModuleProvider {
 
 You can see how declarative become module provider.
 
-=== Extension: `ConfigurationFactory.config`
+=== ConfigurationFactory
 
 [source,kotlin]
 ----
@@ -160,7 +160,7 @@ fun createAppConfiguration(configurationFactory: ConfigurationFactory): SampleFa
 }
 ----
 
-=== Extension: `BQCoreModuleExtender.addCommand`
+=== Adding command
 
 Straightforward and easy to use extension for contributing commands.
 
@@ -171,7 +171,7 @@ BQCoreModule
     .addCommand(ApplicationCommand::class)
 ----
 
-=== Extension: `BQCoreModuleExtender.setDefaultCommand`
+=== Default command
 
 Also extension for `setDefaultCommand` available.
 
@@ -233,7 +233,9 @@ Use Kotlin Script for configuration really simple:
 . Create script
 . Override `ConfigurationFactory`
 
-=== Configuration with Kotlin can be defined in Kotlin Script file:
+=== Using Kotlin Script file
+
+Configuration with Kotlin can be defined in Kotlin Script file:
 
 [source,kotlin]
 ----
@@ -251,9 +253,9 @@ config {
 }
 ----
 
-=== Enable Kotlin Script Configuration in Bootique:
+=== Enable Kotlin Script Configuration
 
-With extension:
+Enable Kotlin Script Configuration in Bootique with extension:
 
 [source,kotlin]
 ----
