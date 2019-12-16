@@ -19,18 +19,18 @@
 
 package io.bootique.kotlin.sample
 
-import com.google.inject.Binder
-import com.google.inject.Inject
-import com.google.inject.Provider
 import io.bootique.BQCoreModule
 import io.bootique.ConfigModule
 import io.bootique.cli.Cli
 import io.bootique.command.CommandOutcome
 import io.bootique.command.CommandWithMetadata
+import io.bootique.di.Binder
+import io.bootique.kotlin.di.KotlinBinder
+import io.bootique.kotlin.di.KotlinModule
 import io.bootique.kotlin.extra.addCommand
 import io.bootique.kotlin.extra.bootiqueCommand
-import io.bootique.kotlin.guice.KotlinBinder
-import io.bootique.kotlin.guice.KotlinModule
+import javax.inject.Inject
+import javax.inject.Provider
 
 class AppCommandModule : KotlinModule, ConfigModule() {
     override fun configure(binder: KotlinBinder) {

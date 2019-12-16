@@ -19,7 +19,6 @@
 
 package io.bootique.kotlin.config
 
-import com.google.inject.Inject
 import io.bootique.config.ConfigurationFactory
 import io.bootique.config.ConfigurationSource
 import io.bootique.type.TypeRef
@@ -28,6 +27,7 @@ import java.lang.reflect.ParameterizedType
 import java.lang.reflect.Type
 import java.lang.reflect.TypeVariable
 import java.lang.reflect.WildcardType
+import javax.inject.Inject
 import kotlin.reflect.full.isSubclassOf
 
 

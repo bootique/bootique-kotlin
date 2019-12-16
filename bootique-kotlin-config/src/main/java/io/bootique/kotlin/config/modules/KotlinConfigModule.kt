@@ -23,8 +23,8 @@ import io.bootique.config.ConfigurationFactory
 import io.bootique.kotlin.config.DefaultKotlinScriptCompiler
 import io.bootique.kotlin.config.KotlinScriptCompiler
 import io.bootique.kotlin.config.KotlinScriptConfigurationFactory
-import io.bootique.kotlin.guice.KotlinBinder
-import io.bootique.kotlin.guice.KotlinModule
+import io.bootique.kotlin.di.KotlinBinder
+import io.bootique.kotlin.di.KotlinModule
 
 /**
  * Module for overriding default JsonNodeConfigurationFactory.

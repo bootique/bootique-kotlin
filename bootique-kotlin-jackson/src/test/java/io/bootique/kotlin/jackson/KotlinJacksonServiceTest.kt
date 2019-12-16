@@ -19,15 +19,15 @@
 
 package io.bootique.kotlin.jackson
 
-import com.google.inject.Provides
-import com.google.inject.Singleton
 import io.bootique.config.ConfigurationFactory
+import io.bootique.di.Provides
 import io.bootique.kotlin.core.KotlinBootique
+import io.bootique.kotlin.di.KotlinBinder
+import io.bootique.kotlin.di.KotlinModule
 import io.bootique.kotlin.extra.config
-import io.bootique.kotlin.guice.KotlinBinder
-import io.bootique.kotlin.guice.KotlinModule
 import org.junit.Assert.assertEquals
 import org.junit.Test
+import javax.inject.Singleton
 
 /**
  * @author Ibragimov Ruslan

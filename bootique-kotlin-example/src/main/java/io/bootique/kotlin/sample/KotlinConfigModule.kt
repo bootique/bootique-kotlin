@@ -19,15 +19,15 @@
 
 package io.bootique.kotlin.sample
 
-import com.google.inject.Provides
-import com.google.inject.Singleton
 import io.bootique.ConfigModule
 import io.bootique.config.ConfigurationFactory
+import io.bootique.di.Provides
 import io.bootique.jetty.JettyModuleProvider
 import io.bootique.kotlin.config.modules.KotlinConfigModuleProvider
 import io.bootique.kotlin.core.KotlinBQModuleProvider
 import io.bootique.kotlin.extra.config
 import io.bootique.logback.LogbackModuleProvider
+import javax.inject.Singleton
 
 data class AppConfiguration(
     val name: String

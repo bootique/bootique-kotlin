@@ -17,29 +17,28 @@
  * under the License.
  */
 
-package io.bootique.kotlin.guice
+package io.bootique.kotlin.di
 
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
-/**
- * @author Ruslan Ibragimov
- */
-class KotlinGuiceExtensionsTest {
+class KotlinDIExtensionsTest {
 
     @Test
-    fun `test creation of guice key`() {
+    fun `test creation of DI key`() {
         val k = key<List<String>>()
 
-        assertEquals(List::class.java, k.typeLiteral.rawType)
-        assertEquals("java.util.List<? extends java.lang.String>", k.typeLiteral.type.typeName)
+        assertEquals(List::class.java, k.type.rawType)
+        assertEquals("java.util.List[io.bootique.di.TypeLiteral\$WildcardMarker[java.lang.Object, java.lang.String]]"
+            , k.type.toString())
     }
 
     @Test
-    fun `test creation of guice TypeLiteral`() {
+    fun `test creation of DI TypeLiteral`() {
         val k = typeLiteral<List<String>>()
 
         assertEquals(List::class.java, k.rawType)
-        assertEquals("java.util.List<? extends java.lang.String>", k.type.typeName)
+        assertEquals("java.util.List[io.bootique.di.TypeLiteral\$WildcardMarker[java.lang.Object, java.lang.String]]"
+            , k.toString())
     }
 }

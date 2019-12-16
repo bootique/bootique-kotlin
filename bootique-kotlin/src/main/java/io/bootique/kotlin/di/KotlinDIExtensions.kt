@@ -17,23 +17,24 @@
  * under the License.
  */
 
-package io.bootique.kotlin.guice
+package io.bootique.kotlin.di
 
-import com.google.inject.Key
-import com.google.inject.TypeLiteral
+import io.bootique.di.Key
+import io.bootique.di.TypeLiteral
+
 
 /**
  * Constructs a new [Key] using kotlin reified generics.
  *
- * @author Ibragimov Ruslan
- * @since 0.25
+ * @since 2.0
  */
-inline fun <reified T> key() = object : Key<T>() {}
+inline fun <reified T> key(): Key<T> {
+    return Key.get(typeLiteral())
+}
 
 /**
  * Constructs a new [TypeLiteral] using kotlin reified generics.
  *
- * @author Ibragimov Ruslan
- * @since 0.25
+ * @since 2.0
  */
 inline fun <reified T> typeLiteral() = object : TypeLiteral<T>() {}

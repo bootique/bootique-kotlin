@@ -19,21 +19,21 @@
 
 package io.bootique.kotlin.core
 
-import com.google.inject.Module
 import io.bootique.BQModuleProvider
+import io.bootique.di.BQModule
 import java.lang.reflect.Type
 import kotlin.reflect.KClass
 
 /**
- * Helper class to use APIs native to Kotlin in Guice.
+ * Helper class to use APIs native to Kotlin in Bootique DI.
  *
  * @author Ibragimov Ruslan
  * @since 0.25
  */
 interface KotlinBQModuleProvider : BQModuleProvider {
-    val module: Module
+    val module: BQModule
 
-    override fun module(): Module {
+    override fun module(): BQModule {
         return module
     }
 
@@ -57,10 +57,10 @@ interface KotlinBQModuleProvider : BQModuleProvider {
     /**
      * Provide property instead of function to use [KClass] instead of [Class].
      */
-    val overrides: Collection<KClass<out Module>>
+    val overrides: Collection<KClass<out BQModule>>
         get() = listOf()
 
-    override fun overrides(): Collection<Class<out Module>> {
+    override fun overrides(): Collection<Class<out BQModule>> {
         return overrides.map { it.java }
     }
 

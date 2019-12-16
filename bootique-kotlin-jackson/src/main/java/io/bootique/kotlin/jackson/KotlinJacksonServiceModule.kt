@@ -21,8 +21,8 @@ package io.bootique.kotlin.jackson
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import io.bootique.jackson.JacksonService
-import io.bootique.kotlin.guice.KotlinBinder
-import io.bootique.kotlin.guice.KotlinModule
+import io.bootique.kotlin.di.KotlinBinder
+import io.bootique.kotlin.di.KotlinModule
 
 /**
  * Bind [JacksonService] with [KotlinJacksonService].

@@ -182,22 +182,7 @@ BQCoreModule
     .setDefaultCommand(ApplicationCommand::class)
 ----
 
-=== Extensions
-
-See https://github.com/bootique/bootique-kotlin/blob/master/bootique-kotlin/src/main/java/io/bootique/kotlin/extra/Extensions.kt[Extensions.kt] for sources.
-
-=== Deprecated Extensions
-
-These extensions deprecated and deleted in 0.25 in favor of `KotlinModule` and `KotlinBootique`.
-
-* `LinkedBindingBuilder.toClass`
-* `ScopedBindingBuilder.asSingleton`
-* `ScopedBindingBuilder.inScope`
-* `Binder.bind`
-* `Bootique.module`
-* `Bootique.modules`
-
-=== Guice
+=== Bootique DI
 
 ==== KotlinModule
 

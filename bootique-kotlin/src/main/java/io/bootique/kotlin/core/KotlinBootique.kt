@@ -19,13 +19,13 @@
 
 package io.bootique.kotlin.core
 
-import com.google.inject.Key
-import com.google.inject.Module
 import io.bootique.BQModuleOverrideBuilder
 import io.bootique.BQModuleProvider
 import io.bootique.BQRuntime
 import io.bootique.Bootique
 import io.bootique.command.CommandOutcome
+import io.bootique.di.BQModule
+import io.bootique.di.Key
 import io.bootique.log.BootLogger
 import io.bootique.shutdown.ShutdownManager
 import kotlin.reflect.KClass
@@ -60,28 +60,28 @@ interface KotlinBootiqueInterface {
     /**
      * [Bootique.override]
      */
-    fun override(overriddenTypes: KClass<out Module>): KotlinBQModuleOverrideBuilder<KotlinBootiqueInterface>
+    fun override(overriddenTypes: KClass<out BQModule>): KotlinBQModuleOverrideBuilder<KotlinBootiqueInterface>
 
     /**
      * [Bootique.module]
      */
-    fun module(moduleType: KClass<out Module>): KotlinBootiqueInterface
+    fun module(moduleType: KClass<out BQModule>): KotlinBootiqueInterface
 
 
     /**
      * [Bootique.modules]
      */
-    fun modules(vararg moduleTypes: KClass<out Module>): KotlinBootiqueInterface
+    fun modules(vararg moduleTypes: KClass<out BQModule>): KotlinBootiqueInterface
 
     /**
      * [Bootique.module]
      */
-    fun module(module: Module): KotlinBootiqueInterface
+    fun module(module: BQModule): KotlinBootiqueInterface
 
     /**
      * [Bootique.modules]
      */
-    fun modules(vararg modules: Module): KotlinBootiqueInterface
+    fun modules(vararg modules: BQModule): KotlinBootiqueInterface
 
     /**
      * [Bootique.module]
@@ -127,41 +127,41 @@ class KotlinBootique(
         return this
     }
 
-    override fun override(overriddenTypes: KClass<out Module>): KotlinBQModuleOverrideBuilder<KotlinBootiqueInterface> {
+    override fun override(overriddenTypes: KClass<out BQModule>): KotlinBQModuleOverrideBuilder<KotlinBootiqueInterface> {
         return object : KotlinBQModuleOverrideBuilder<KotlinBootiqueInterface> {
-            override fun with(module: Module): KotlinBootiqueInterface {
+            override fun with(module: BQModule): KotlinBootiqueInterface {
                 bootique.override(overriddenTypes.java).with(module)
                 return this@KotlinBootique
             }
 
-            override fun with(moduleType: KClass<out Module>): KotlinBootiqueInterface {
+            override fun with(moduleType: KClass<out BQModule>): KotlinBootiqueInterface {
                 bootique.override(overriddenTypes.java).with(moduleType.java)
                 return this@KotlinBootique
             }
 
-            override fun with(moduleType: Class<out Module>): KotlinBootiqueInterface {
+            override fun with(moduleType: Class<out BQModule>): KotlinBootiqueInterface {
                 bootique.override(overriddenTypes.java).with(moduleType)
                 return this@KotlinBootique
             }
         }
     }
 
-    override fun module(moduleType: KClass<out Module>): KotlinBootiqueInterface {
+    override fun module(moduleType: KClass<out BQModule>): KotlinBootiqueInterface {
         bootique.module(moduleType.java)
         return this
     }
 
-    override fun modules(vararg moduleTypes: KClass<out Module>): KotlinBootiqueInterface {
+    override fun modules(vararg moduleTypes: KClass<out BQModule>): KotlinBootiqueInterface {
         moduleTypes.forEach { bootique.module(it.java) }
         return this
     }
 
-    override fun module(module: Module): KotlinBootiqueInterface {
+    override fun module(module: BQModule): KotlinBootiqueInterface {
         bootique.module(module)
         return this
     }
 
-    override fun modules(vararg modules: Module): KotlinBootiqueInterface {
+    override fun modules(vararg modules: BQModule): KotlinBootiqueInterface {
         modules.forEach { bootique.module(it) }
         return this
     }
@@ -185,7 +185,7 @@ interface KotlinBQModuleOverrideBuilder<T> : BQModuleOverrideBuilder<T> {
     /**
      * [BQModuleOverrideBuilder.with]
      */
-    fun with(moduleType: KClass<out Module>): T
+    fun with(moduleType: KClass<out BQModule>): T
 }
 
 interface KotlinBQRuntime {
