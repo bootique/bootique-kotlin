@@ -49,22 +49,22 @@ Add dependency on needed parts in your `build.gradle`, or `pom.xml`:
 [source,kotlin,subs="attributes"]
 ----
 // Kotlin Extensions for Bootique
-compile("io.bootique.kotlin:bootique-kotlin:{bootique.version}")
+compile("io.bootique.kotlin:bootique-kotlin:{bootique_version}")
 
 // Kotlin Configuration Module
-compile("io.bootique.kotlin:bootique-kotlin-config:{bootique.version}")
+compile("io.bootique.kotlin:bootique-kotlin-config:{bootique_version}")
 
 // Kotlin Configuration Module
-compile("io.bootique.kotlin:bootique-kotlin-jackson:{bootique.version}")
+compile("io.bootique.kotlin:bootique-kotlin-jackson:{bootique_version}")
 
 // Kotlin Configuration and Extensions for Jetty. Also this adds dependency to bootique-jetty module.
-compile("io.bootique.kotlin:bootique-kotlin-jetty:{bootique.version}")
+compile("io.bootique.kotlin:bootique-kotlin-jetty:{bootique_version}")
 
 // Kotlin Configuration and Extensions for Logback. Also this adds dependency to bootique-logback module.
-compile("io.bootique.kotlin:bootique-kotlin-logback:{bootique.version}")
+compile("io.bootique.kotlin:bootique-kotlin-logback:{bootique_version}")
 
 // Kotlin Configuration and Extensions for $moduleName$. Also this adds dependency to bootique-$moduleName$ module.
-compile("io.bootique.kotlin:bootique-kotlin-$moduleName$:{bootique.version}")
+compile("io.bootique.kotlin:bootique-kotlin-$moduleName$:{bootique_version}")
 ----
 
 [IMPORTANT]
