@@ -39,7 +39,7 @@ class KotlinJacksonServiceTest {
     fun test() {
         val config = KotlinBootique(arrayOf("--config=classpath:config.yml"))
             .module(TestKotlinModule::class)
-            .module(KotlinJacksonServiceModuleProvider())
+            .moduleProvider(KotlinJacksonServiceModuleProvider())
             .createRuntime()
             .getInstance(TestConfig::class)
 

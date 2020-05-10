@@ -84,9 +84,9 @@ interface KotlinBootiqueInterface {
     fun modules(vararg modules: BQModule): KotlinBootiqueInterface
 
     /**
-     * [Bootique.module]
+     * [Bootique.moduleProvider]
      */
-    fun module(moduleProvider: BQModuleProvider): KotlinBootiqueInterface
+    fun moduleProvider(moduleProvider: BQModuleProvider): KotlinBootiqueInterface
 
     /**
      * [Bootique.createRuntime]
@@ -166,8 +166,8 @@ class KotlinBootique(
         return this
     }
 
-    override fun module(moduleProvider: BQModuleProvider): KotlinBootiqueInterface {
-        bootique.module(moduleProvider)
+    override fun moduleProvider(moduleProvider: BQModuleProvider): KotlinBootiqueInterface {
+        bootique.moduleProvider(moduleProvider)
         return this
     }
 

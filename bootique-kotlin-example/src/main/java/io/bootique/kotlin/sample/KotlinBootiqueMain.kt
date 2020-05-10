@@ -24,7 +24,7 @@ import io.bootique.kotlin.core.KotlinBootique
 fun main(args: Array<String>) {
     KotlinBootique(args)
         .args("--server", "--config=classpath:config.kts")
-        .module(KotlinSampleModuleProvider())
+        .moduleProvider(KotlinSampleModuleProvider())
         .exec()
         .exit()
 }
