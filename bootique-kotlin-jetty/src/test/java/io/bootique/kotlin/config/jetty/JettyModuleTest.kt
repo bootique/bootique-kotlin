@@ -19,6 +19,7 @@
 
 package io.bootique.kotlin.config.jetty
 
+import io.bootique.jetty.connector.PortFactory
 import io.bootique.jetty.server.ServerFactory
 import io.bootique.kotlin.config.modules.config
 import org.junit.Assert.assertEquals
@@ -31,7 +32,7 @@ class JettyModuleTest {
         val server = config {
             jetty {
                 httpConnector {
-                    port = 4242
+                    port = PortFactory("4242")
                     host = "192.168.0.1"
                     responseHeaderSize = 42
                     requestHeaderSize = 13
@@ -41,7 +42,7 @@ class JettyModuleTest {
 
         val obj = (server["jetty"] as ServerFactory).connectors[0]
 
-        assertEquals(4242, obj.port)
+        assertEquals(4242, obj.port.resolve("192.168.0.1"))
         assertEquals("192.168.0.1", obj.host)
         assertEquals(42, obj.responseHeaderSize)
         assertEquals(13, obj.requestHeaderSize)
