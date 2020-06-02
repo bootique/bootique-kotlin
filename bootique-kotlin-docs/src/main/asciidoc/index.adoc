@@ -92,7 +92,7 @@ If you'd like to use snapshot versions, you have to add bootique snapshot reposi
 
 [source]
 ----
-https://maven.objectstyle.org/nexus/content/repositories/bootique-snapshots/
+https://oss.jfrog.org/artifactory/libs-snapshot
 ----
 
 For example in gradle it can be done this way:
@@ -100,7 +100,7 @@ For example in gradle it can be done this way:
 [source,kotlin]
 ----
 repositories {
-    maven { setUrl("http://maven.objectstyle.org/nexus/content/repositories/bootique-snapshots/") }
+    maven { setUrl("https://oss.jfrog.org/artifactory/libs-snapshot") }
 }
 ----
 
