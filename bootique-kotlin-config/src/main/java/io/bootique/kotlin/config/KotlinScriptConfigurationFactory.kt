@@ -30,7 +30,6 @@ import java.lang.reflect.WildcardType
 import javax.inject.Inject
 import kotlin.reflect.full.isSubclassOf
 
-
 /**
  * Implementation of Bootique's ConfigurationFactory,
  * which used .kts files instead of .yaml.
@@ -55,7 +54,7 @@ class KotlinScriptConfigurationFactory @Inject constructor(
     }
 
     override fun <T : Any> config(expectedType: Class<T>, prefix: String): T {
-        val config = configs[prefix] ?: throw RuntimeException("Config for prefix '$prefix' not found.")
+        val config = configs[prefix] ?: createInstanceUsingDefaultConstructor(expectedType)
 
         if (config::class.isSubclassOf(expectedType.kotlin)) {
             @Suppress("UNCHECKED_CAST")
@@ -66,7 +65,15 @@ class KotlinScriptConfigurationFactory @Inject constructor(
     }
 
     override fun <T : Any> config(type: TypeRef<out T>, prefix: String): T {
+        @Suppress("UNCHECKED_CAST")
         return config(type.type.getRawType() as Class<T>, prefix)
+    }
+
+    private fun <T : Any> createInstanceUsingDefaultConstructor(type: Class<T>): T {
+        @Suppress("UNCHECKED_CAST")
+        return type.constructors
+            .find { it.parameterCount == 0 }
+            ?.newInstance() as T
     }
 }
 
