@@ -17,8 +17,13 @@
  * under the License.
  */
 
-import io.bootique.kotlin.config.modules.config
+import io.bootique.jetty.connector.PortFactory
+import io.bootique.kotlin.config.jetty.httpConnector
+import io.bootique.kotlin.config.jetty.jetty
 
-config {
-    addConfig("sample" to "Allons-y!")
+jetty {
+    httpConnector {
+        port = PortFactory(4242)
+        host = "0.0.0.0"
+    }
 }

@@ -21,7 +21,7 @@ package io.bootique.kotlin.config.jetty
 
 import io.bootique.jetty.connector.PortFactory
 import io.bootique.jetty.server.ServerFactory
-import io.bootique.kotlin.config.modules.config
+import io.bootique.kotlin.config.ScriptingBQConfigurationScript
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
 import org.junit.Test
@@ -29,7 +29,7 @@ import org.junit.Test
 class JettyModuleTest {
     @Test
     fun `single http connector`() {
-        val server = config {
+        val script = createBQConfigurationScript().apply {
             jetty {
                 httpConnector {
                     port = PortFactory("4242")
@@ -39,8 +39,7 @@ class JettyModuleTest {
                 }
             }
         }
-
-        val obj = (server["jetty"] as ServerFactory).connectors[0]
+        val obj = script.get<ServerFactory>("jetty").connectors[0]
 
         assertEquals(4242, obj.port.resolve("192.168.0.1"))
         assertEquals("192.168.0.1", obj.host)
@@ -50,12 +49,16 @@ class JettyModuleTest {
 
     @Test
     fun `jetty config`() {
-        val config = config {
+        val script = createBQConfigurationScript().apply {
             jetty {
 
             }
         }
 
-        assertNotNull(config["jetty"])
+        assertNotNull(script.get<ServerFactory>("jetty"))
+    }
+
+    private fun createBQConfigurationScript(): ScriptingBQConfigurationScript {
+        return object : ScriptingBQConfigurationScript() {}
     }
 }

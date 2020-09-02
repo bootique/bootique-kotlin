@@ -50,8 +50,8 @@
 
     <properties>
         <bootique.version>${project.version}</bootique.version>
-        <kotlin.version>1.3.10</kotlin.version>
-        <dokka.version>0.9.17</dokka.version>
+        <kotlin.version>1.4.0</kotlin.version>
+        <dokka.version>0.10.1</dokka.version>
         <kotlin.code.style>official</kotlin.code.style>
     </properties>
 
@@ -119,12 +119,7 @@
             </dependency>
             <dependency>
                 <groupId>org.jetbrains.kotlin</groupId>
-                <artifactId>kotlin-script-util</artifactId>
-                <version>${kotlin.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.jetbrains.kotlin</groupId>
-                <artifactId>kotlin-compiler-embeddable</artifactId>
+                <artifactId>kotlin-scripting-jvm-host</artifactId>
                 <version>${kotlin.version}</version>
             </dependency>
         </dependencies>

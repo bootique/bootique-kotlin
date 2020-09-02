@@ -84,11 +84,6 @@
             <artifactId>kotlin-stdlib-jdk8</artifactId>
             <scope>provided</scope>
         </dependency>
-        <dependency>
-            <groupId>org.jetbrains.kotlin</groupId>
-            <artifactId>kotlin-reflect</artifactId>
-            <scope>provided</scope>
-        </dependency>
     </dependencies>
 
     <!-- Release profile used to generate javadocs and sign artifacts -->
