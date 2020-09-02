@@ -24,7 +24,7 @@
     <parent>
         <groupId>io.bootique.kotlin</groupId>
         <artifactId>bootique-kotlin-parent</artifactId>
-        <version>2.0-SNAPSHOT</version>
+        <version>2.0.M1</version>
     </parent>
 
     <artifactId>bootique-kotlin-logback</artifactId>
