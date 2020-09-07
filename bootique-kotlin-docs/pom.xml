@@ -34,7 +34,7 @@
         <asciidoctorj.version>2.1.0</asciidoctorj.version>
         <asciidoctor.maven.plugin.version>2.0.0-RC.1</asciidoctor.maven.plugin.version>
         <jruby.version>9.2.8.0</jruby.version>
-        <bootique.snapshot.version>2.0-SNAPSHOT</bootique.snapshot.version>
+        <bootique.snapshot.version>2.0.B1-SNAPSHOT</bootique.snapshot.version>
     </properties>
 
     <pluginRepositories>
@@ -100,7 +100,7 @@
                                 <sectnums />
                                 <icons>font</icons>
                                 <toc>auto</toc>
-                                <bootique_version>${bootique.version}</bootique_version>
+                                <bootique_version>2.0.M1</bootique_version>
                                 <kotlin_version>${kotlin.version}</kotlin_version>
                                 <bootique_snapshot_version>${bootique.snapshot.version}</bootique_snapshot_version>
                             </attributes>
