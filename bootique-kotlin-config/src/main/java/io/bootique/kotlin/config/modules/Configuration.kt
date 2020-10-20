@@ -25,6 +25,10 @@ package io.bootique.kotlin.config.modules
  * @author Ibragimov Ruslan
  * @since 0.1
  */
+@Deprecated(
+    message = "This class is deprecated in Bootique 2.0 in favour of BQConfigurationScript.",
+    level = DeprecationLevel.WARNING
+)
 class BootiqueConfiguration(
     private val configs: MutableMap<String, Any> = mutableMapOf()
 ) {
@@ -32,6 +36,10 @@ class BootiqueConfiguration(
     fun getConfigs(): Map<String, Any> = configs
 }
 
+@Deprecated(
+    message = "This method deleted in Bootique 2.0. From 2.0 configuration can be defined on top level.",
+    level = DeprecationLevel.ERROR
+)
 fun config(body: (@FactoryDSL BootiqueConfiguration).() -> Unit): Map<String, Any> {
     val bootiqueConfiguration = BootiqueConfiguration()
     body(bootiqueConfiguration)

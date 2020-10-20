@@ -29,8 +29,10 @@ class KotlinDIExtensionsTest {
         val k = key<List<String>>()
 
         assertEquals(List::class.java, k.type.rawType)
-        assertEquals("java.util.List[io.bootique.di.TypeLiteral\$WildcardMarker[java.lang.Object, java.lang.String]]"
-            , k.type.toString())
+        assertEquals(
+            "java.util.List[io.bootique.di.TypeLiteral\$WildcardMarker[java.lang.Object, java.lang.String]]",
+            k.type.toString()
+        )
     }
 
     @Test
@@ -38,7 +40,9 @@ class KotlinDIExtensionsTest {
         val k = typeLiteral<List<String>>()
 
         assertEquals(List::class.java, k.rawType)
-        assertEquals("java.util.List[io.bootique.di.TypeLiteral\$WildcardMarker[java.lang.Object, java.lang.String]]"
-            , k.toString())
+        assertEquals(
+            "java.util.List[io.bootique.di.TypeLiteral\$WildcardMarker[java.lang.Object, java.lang.String]]",
+            k.toString()
+        )
     }
 }

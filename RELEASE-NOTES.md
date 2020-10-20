@@ -1,3 +1,7 @@
+## 2.0-SNAPSHOT
+
+* #12 Update to Kotlin 1.4
+
 ## 1.0.RC1
 
 * #6 Update Jackson to 2.9.5

@@ -30,23 +30,25 @@ class ConfigurationTest {
 
     @Test
     fun `single config`() {
-        val config = config {
-            addConfig("Yoda" to Sample("Jedi"))
-        }
+        val script = createBQConfigurationScript()
+        script.addConfig("Yoda", Sample("Jedi"))
 
-        assertEquals(Sample("Jedi"), config["Yoda"])
+        assertEquals(Sample("Jedi"), script["Yoda"])
     }
 
     @Test
     fun `multiple configs`() {
-        val config = config {
-            addConfig("Yoda" to Sample("Jedi"))
-            addConfig("Vader" to Sample("Sith"))
-        }
+        val script = createBQConfigurationScript()
+        script.addConfig("Yoda", Sample("Jedi"))
+        script.addConfig("Vader", Sample("Sith"))
 
-        assertEquals(Sample("Jedi"), config["Yoda"])
-        assertEquals(Sample("Sith"), config["Vader"])
+        assertEquals(Sample("Jedi"), script["Yoda"])
+        assertEquals(Sample("Sith"), script["Vader"])
     }
 
     private data class Sample(val text: String)
+
+    private fun createBQConfigurationScript(): ScriptingBQConfigurationScript {
+        return object : ScriptingBQConfigurationScript() {}
+    }
 }

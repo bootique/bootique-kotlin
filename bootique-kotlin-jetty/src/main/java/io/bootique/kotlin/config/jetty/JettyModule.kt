@@ -22,7 +22,7 @@ package io.bootique.kotlin.config.jetty
 import io.bootique.jetty.connector.HttpConnectorFactory
 import io.bootique.jetty.connector.HttpsConnectorFactory
 import io.bootique.jetty.server.ServerFactory
-import io.bootique.kotlin.config.modules.BootiqueConfiguration
+import io.bootique.kotlin.config.ScriptingBQConfigurationScript
 import io.bootique.kotlin.config.modules.FactoryDSL
 
 /**
@@ -31,8 +31,8 @@ import io.bootique.kotlin.config.modules.FactoryDSL
  * @author Ibragimov Ruslan
  * @since 0.1
  */
-inline fun BootiqueConfiguration.jetty(body: (@FactoryDSL ServerFactory).() -> Unit) {
-    this.addConfig("jetty" to ServerFactory().also { factory ->
+inline fun ScriptingBQConfigurationScript.jetty(body: (@FactoryDSL ServerFactory).() -> Unit) {
+    this.addConfig("jetty", ServerFactory().also { factory ->
         body(factory)
     })
 }

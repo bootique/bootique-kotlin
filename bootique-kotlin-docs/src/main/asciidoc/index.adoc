@@ -73,18 +73,13 @@ compile("io.bootique.kotlin:bootique-kotlin-$moduleName$:{bootique_version}")
 
 ----
 bootique-kotlin-config:
-  org.jetbrains.kotlin:kotlin-reflect
-  org.jetbrains.kotlin:kotlin-script-util
-  org.jetbrains.kotlin:kotlin-compiler-embeddable
+  org.jetbrains.kotlin:kotlin-scripting-jvm-host
 
 bootique-kotlin-jackson:
   org.jetbrains.kotlin:kotlin-reflect
-
-bootique-kotlin-logback:
-  org.jetbrains.kotlin:kotlin-reflect
 ----
 
-If you use different kotlin version, it's much simpler to include this libraries with proper version, instead of excluding library version of them and then including again.
+If you use different kotlin version, it's much simpler to include these libraries with proper version, instead of excluding library version of them and then including again.
 
 ====
 
@@ -100,7 +95,7 @@ For example in gradle it can be done this way:
 [source,kotlin]
 ----
 repositories {
-    maven { setUrl("https://oss.jfrog.org/artifactory/libs-snapshot") }
+    maven { url = uri("https://oss.jfrog.org/artifactory/libs-snapshot") }
 }
 ----
 
@@ -200,7 +195,7 @@ class ApplicationModule : KotlinModule {
 
 ==== Extensions
 
-There are few function to help work with `TypeLiteral` and `Key`.
+There are few functions to help work with `TypeLiteral` and `Key`.
 
 [source,kotlin]
 ----
@@ -213,7 +208,7 @@ key<List<Callable<A>>>()
 
 == Configuration Module
 
-Use Kotlin Script for configuration really simple:
+Using Kotlin Script for a configuration is really simple:
 
 . Create script
 . Override `ConfigurationFactory`
@@ -224,16 +219,13 @@ Configuration with Kotlin can be defined in Kotlin Script file:
 
 [source,kotlin]
 ----
-import io.bootique.kotlin.config.modules.config
 import io.bootique.kotlin.config.modules.httpConnector
 import io.bootique.kotlin.config.modules.jetty
 
-config {
-    jetty {
-        httpConnector {
-            port = 4242
-            host = "0.0.0.0"
-        }
+jetty {
+    httpConnector {
+        port = 4242
+        host = "0.0.0.0"
     }
 }
 ----
@@ -270,17 +262,17 @@ You can pass this file as always to bootique:
 
 [source,bash]
 ----
-./bin/application --config=classpath:config.kts --server
+./bin/application --config=classpath:config.bq.kts --server
 ----
 
 It's even support multiple files (each file contains map of configs):
 
 [source,bash]
 ----
-./bin/application --config=classpath:config.kts --config=classpath:config1.kts --server
+./bin/application --config=classpath:config.bq.kts --config=classpath:config1.bq.kts --server
 ----
 
-That's it! You get autocomplete in IDE, and *code* for configuration!
+That's it! You get autocomplete in IDE, and *code* for a configuration!
 
 == Bootique Jetty
 
@@ -288,10 +280,8 @@ Define empty config:
 
 [source,kotlin]
 ----
-config {
-    jetty {
+jetty {
 
-    }
 }
 ----
 
@@ -317,29 +307,27 @@ Define logback configuration:
 
 [source,kotlin]
 ----
-config {
-    addConfig("log" to logbackContextFactory(
-        logFormat = "[%d{dd/MMM/yyyy:HH:mm:ss}] %t %-5p %c{1}: %m%n",
-        useLogbackConfig = false,
-        debugLogback = false,
-        level = LogbackLevel.warn,
-        loggers = mapOf(
-            logger(LogbackModuleTest::class, LogbackLevel.error),
-            logger("TestLogger", LogbackLevel.trace)
+addConfig("log", logbackContextFactory(
+    logFormat = "[%d{dd/MMM/yyyy:HH:mm:ss}] %t %-5p %c{1}: %m%n",
+    useLogbackConfig = false,
+    debugLogback = false,
+    level = LogbackLevel.warn,
+    loggers = mapOf(
+        logger(LogbackModuleTest::class, LogbackLevel.error),
+        logger("TestLogger", LogbackLevel.trace)
+    ),
+    appenders = listOf(
+        consoleAppender(
+            logFormat = "[%d{dd/MMM/yyyy:HH:mm:ss}] %t %-5p %c{1}: %m%n",
+            target = ConsoleTarget.stderr
         ),
-        appenders = listOf(
-            consoleAppender(
-                logFormat = "[%d{dd/MMM/yyyy:HH:mm:ss}] %t %-5p %c{1}: %m%n",
-                target = ConsoleTarget.stderr
-            ),
-            fileAppender(logFormat, "abc", timeBasedPolicy(
-                fileNamePattern = "Abc_%d",
-                totalSize = "2m",
-                historySize = 1
-            ))
-        )
-    ))
-}
+        fileAppender(logFormat, "abc", timeBasedPolicy(
+            fileNamePattern = "Abc_%d",
+            totalSize = "2m",
+            historySize = 1
+        ))
+    )
+))
 ----
 
 Use function for retrieving logger for class:
@@ -362,12 +350,10 @@ Define undertow configuration:
 
 [source,kotlin]
 ----
-config {
-    addConfig("undertow" to undertowFactory(
-        httpListeners = listOf(
-            httpListener(1337, "127.0.0.1")
-        ),
-        workerThreads = 42
-    ))
-}
+addConfig("undertow", undertowFactory(
+    httpListeners = listOf(
+        httpListener(1337, "127.0.0.1")
+    ),
+    workerThreads = 42
+))
 ----

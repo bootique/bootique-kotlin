@@ -31,11 +31,12 @@ class KotlinScriptCompilerTest {
 
     @Test
     fun `execute simple script config file`() {
-        val compiler = DefaultKotlinScriptCompiler()
-        val resource = URLClassLoader.getSystemResource("sample.kts")
-        val result = compiler.execute<Map<String, Any>>(resource)
+        val compiler = BQConfigurationScriptHostProvider().get()
+        val resource = URLClassLoader.getSystemResource("sample.bq.kts")
+        val result = compiler.eval(resource)
 
         assertNotNull(result)
+
         assertEquals("Allons-y!", result["sample"])
     }
 }

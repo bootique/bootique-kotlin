@@ -40,14 +40,14 @@ import kotlin.reflect.full.isSubclassOf
  */
 class KotlinScriptConfigurationFactory @Inject constructor(
     private val configurationSource: ConfigurationSource,
-    private val kotlinScriptCompiler: KotlinScriptCompiler
+    private val scriptHost: BQConfigurationScriptHost
 ) : ConfigurationFactory {
     private val configs by lazy {
         val configs = mutableMapOf<String, Any>()
 
         configurationSource.get().use { stream ->
             stream.forEach { url ->
-                configs.putAll(kotlinScriptCompiler.execute<Map<String, Any>>(url))
+                configs.putAll(scriptHost.eval(url).getAll())
             }
         }
 
