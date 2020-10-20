@@ -1,4 +1,4 @@
-## 2.0-SNAPSHOT
+## 2.0.B1
 
 * #12 Update to Kotlin 1.4
 
