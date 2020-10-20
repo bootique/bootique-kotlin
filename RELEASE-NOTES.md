@@ -1,6 +1,7 @@
 ## 2.0.B1
 
 * #12 Update to Kotlin 1.4
+* #13 Config for prefix 'xyz' not found.
 
 ## 1.0.RC1
 
