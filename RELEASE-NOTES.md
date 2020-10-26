@@ -2,6 +2,7 @@
 
 * #12 Update to Kotlin 1.4
 * #13 Config for prefix 'xyz' not found.
+* #16 NPE in KotlinScriptConfigurationFactory
 
 ## 1.0.RC1
 
