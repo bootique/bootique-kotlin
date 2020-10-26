@@ -71,9 +71,13 @@ class KotlinScriptConfigurationFactory @Inject constructor(
 
     private fun <T : Any> createInstanceUsingDefaultConstructor(type: Class<T>): T {
         @Suppress("UNCHECKED_CAST")
-        return type.constructors
-            .find { it.parameterCount == 0 }
-            ?.newInstance() as T
+        return when(type) {
+            Map::class.java -> emptyMap<Any, Any>() as T
+            else -> type.constructors
+                .find { it.parameterCount == 0 }
+                ?.newInstance() as T?
+                ?: error("Can't create instance of [$type]")
+        }
     }
 }
 
