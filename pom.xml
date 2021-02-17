@@ -24,7 +24,7 @@
     <parent>
         <groupId>io.bootique.modules.parent</groupId>
         <artifactId>bootique-modules-parent</artifactId>
-        <version>2.0.4</version>
+        <version>2.0.5</version>
     </parent>
 
     <groupId>io.bootique.kotlin</groupId>
@@ -51,7 +51,7 @@
     <properties>
         <bootique.version>${project.version}</bootique.version>
         <kotlin.version>1.4.0</kotlin.version>
-        <dokka.version>0.10.1</dokka.version>
+        <dokka.version>1.4.10.2</dokka.version>
         <kotlin.code.style>official</kotlin.code.style>
     </properties>
 
@@ -60,40 +60,6 @@
         <url>https://github.com/bootique/bootique-kotlin</url>
         <tag>HEAD</tag>
     </scm>
-
-    <distributionManagement>
-        <repository>
-            <id>bintray-bootique-releases</id>
-            <name>bintray-bootique-releases</name>
-            <url>https://api.bintray.com/maven/bootique/releases/bootique-kotlin/;publish=1</url>
-        </repository>
-    </distributionManagement>
-
-    <pluginRepositories>
-        <pluginRepository>
-            <id>central</id>
-            <url>https://repo1.maven.org/maven2</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </pluginRepository>
-
-        <!-- Needed for dokka-maven-plugin -->
-        <pluginRepository>
-            <id>jcenter</id>
-            <name>JCenter</name>
-            <url>https://jcenter.bintray.com/</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </pluginRepository>
-    </pluginRepositories>
 
     <dependencyManagement>
         <dependencies>
@@ -176,6 +142,14 @@
                         </goals>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.sonatype.plugins</groupId>
+                <artifactId>nexus-staging-maven-plugin</artifactId>
+                <configuration>
+                    <!-- Deploy every module independently to be able to skip deployment for some of them -->
+                    <skipLocalStaging>true</skipLocalStaging>
+                </configuration>
             </plugin>
         </plugins>
     </build>

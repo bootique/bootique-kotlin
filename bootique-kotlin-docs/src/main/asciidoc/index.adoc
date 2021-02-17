@@ -95,7 +95,7 @@ For example in gradle it can be done this way:
 [source,kotlin]
 ----
 repositories {
-    maven { url = uri("https://oss.jfrog.org/artifactory/libs-snapshot") }
+    maven { url = uri("https://oss.sonatype.org/content/repositories/snapshots") }
 }
 ----
 
