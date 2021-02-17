@@ -35,6 +35,10 @@ import kotlin.reflect.full.isSubclassOf
  * Implementation of Bootique's ConfigurationFactory,
  * which used .kts files instead of .yaml.
  *
+ * FIXME: this class should be updated to align with
+ *        the latest {@link io.bootique.config.jackson.JsonConfigurationLoader} logic.
+ *        For now it only reads DI provided configs.
+ *
  * @author Ibragimov Ruslan
  * @since 0.1
  */
