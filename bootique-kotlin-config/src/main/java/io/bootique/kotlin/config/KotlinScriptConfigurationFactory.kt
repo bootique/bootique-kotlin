@@ -19,8 +19,9 @@
 
 package io.bootique.kotlin.config
 
+import io.bootique.annotation.DIConfigs
 import io.bootique.config.ConfigurationFactory
-import io.bootique.config.ConfigurationSource
+import io.bootique.resource.ResourceFactory
 import io.bootique.type.TypeRef
 import java.lang.reflect.GenericArrayType
 import java.lang.reflect.ParameterizedType
@@ -38,18 +39,17 @@ import kotlin.reflect.full.isSubclassOf
  * @since 0.1
  */
 class KotlinScriptConfigurationFactory @Inject constructor(
-    private val configurationSource: ConfigurationSource,
+    @DIConfigs private val diConfigs: Set<String>,
     private val scriptHost: BQConfigurationScriptHost
 ) : ConfigurationFactory {
     private val configs by lazy {
         val configs = mutableMapOf<String, Any>()
-
-        configurationSource.get().use { stream ->
-            stream.forEach { url ->
-                configs.putAll(scriptHost.eval(url).getAll())
-            }
+        diConfigs.stream().map {url ->
+            val resourceFactory = ResourceFactory(url)
+            resourceFactory.url
+        }.forEach { url ->
+            configs.putAll(scriptHost.eval(url).getAll())
         }
-
         configs
     }
 

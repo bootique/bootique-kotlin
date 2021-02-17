@@ -19,20 +19,16 @@
 
 package io.bootique.kotlin.config
 
-import io.bootique.config.ConfigurationSource
 import io.bootique.config.PolymorphicConfiguration
 import io.bootique.kotlin.extra.config
 import io.bootique.type.TypeRef
 import org.junit.Assert.assertEquals
 import org.junit.Test
-import java.net.URLClassLoader
 
 class KotlinScriptConfigurationFactoryTest {
     @Test
     fun `test absence of configuration`() {
-        val confSource = ConfigurationSource {
-            listOf(URLClassLoader.getSystemResource("sample.bq.kts")).stream()
-        }
+        val confSource = setOf("classpath:sample.bq.kts")
         val compiler = BQConfigurationScriptHostProvider().get()
         val configurationFactory = KotlinScriptConfigurationFactory(confSource, compiler)
 
@@ -44,9 +40,7 @@ class KotlinScriptConfigurationFactoryTest {
 
     @Test
     fun `test configuration`() {
-        val confSource = ConfigurationSource {
-            listOf(URLClassLoader.getSystemResource("sample.bq.kts")).stream()
-        }
+        val confSource = setOf("classpath:sample.bq.kts")
         val compiler = BQConfigurationScriptHostProvider().get()
         val configurationFactory = KotlinScriptConfigurationFactory(confSource, compiler)
 
@@ -72,9 +66,7 @@ class KotlinScriptConfigurationFactoryTest {
      */
     @Test
     fun `test empty polymorphic configuration`() {
-        val confSource = ConfigurationSource {
-            listOf(URLClassLoader.getSystemResource("sample.bq.kts")).stream()
-        }
+        val confSource = setOf("classpath:sample.bq.kts")
         val compiler = BQConfigurationScriptHostProvider().get()
         val configurationFactory = KotlinScriptConfigurationFactory(confSource, compiler)
 

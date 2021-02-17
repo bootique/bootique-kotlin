@@ -50,7 +50,7 @@
 
     <properties>
         <bootique.version>${project.version}</bootique.version>
-        <kotlin.version>1.4.0</kotlin.version>
+        <kotlin.version>1.4.10</kotlin.version>
         <dokka.version>1.4.10.2</dokka.version>
         <kotlin.code.style>official</kotlin.code.style>
     </properties>
