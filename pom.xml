@@ -61,19 +61,6 @@
         <tag>HEAD</tag>
     </scm>
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.sonatype.plugins</groupId>
-                <artifactId>nexus-staging-maven-plugin</artifactId>
-                <configuration>
-                    <!-- Deploy every module independently to be able to skip deployment for some of them -->
-                    <skipLocalStaging>true</skipLocalStaging>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
-
     <pluginRepositories>
         <pluginRepository>
             <id>central</id>
@@ -186,6 +173,14 @@
                         </goals>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.sonatype.plugins</groupId>
+                <artifactId>nexus-staging-maven-plugin</artifactId>
+                <configuration>
+                    <!-- Deploy every module independently to be able to skip deployment for some of them -->
+                    <skipLocalStaging>true</skipLocalStaging>
+                </configuration>
             </plugin>
         </plugins>
     </build>
