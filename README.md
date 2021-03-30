@@ -17,7 +17,7 @@
   under the License.
   -->
 
-[![Build Status](https://travis-ci.org/bootique/bootique-kotlin.svg)](https://travis-ci.org/bootique/bootique-kotlin)
+[![build test deploy 1.x](https://github.com/bootique/bootique-kotlin/actions/workflows/maven-1x.yml/badge.svg)](https://github.com/bootique/bootique-kotlin/actions/workflows/maven-1x.yml)
 [![Maven Central](https://img.shields.io/maven-central/v/io.bootique.kotlin/bootique-kotlin.svg?colorB=brightgreen)](https://search.maven.org/artifact/io.bootique.kotlin/bootique-kotlin/)
 
 # Bootique Kotlin
