@@ -74,6 +74,16 @@
                 <version>${bootique.version}</version>
             </dependency>
             <dependency>
+                <groupId>io.bootique</groupId>
+                <artifactId>bootique-junit5</artifactId>
+                <version>${bootique.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.bootique.jetty</groupId>
+                <artifactId>bootique-jetty</artifactId>
+                <version>${bootique.version}</version>
+            </dependency>
+            <dependency>
                 <groupId>org.jetbrains.kotlin</groupId>
                 <artifactId>kotlin-stdlib-jdk8</artifactId>
                 <version>${kotlin.version}</version>

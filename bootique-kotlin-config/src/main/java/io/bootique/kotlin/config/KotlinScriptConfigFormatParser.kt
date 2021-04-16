@@ -19,24 +19,28 @@
 
 package io.bootique.kotlin.config
 
-import org.junit.Assert.assertEquals
-import org.junit.Assert.assertNotNull
-import org.junit.Test
-import java.net.URLClassLoader
+import com.fasterxml.jackson.databind.JsonNode
+import io.bootique.config.jackson.parser.ConfigurationFormatParser
+import io.bootique.jackson.JacksonService
+import java.io.InputStream
+import java.net.URL
+import javax.inject.Inject
 
 /**
- * @author Ruslan Ibragimov
+ * @since 2.0.B1
  */
-class KotlinScriptCompilerTest {
+class KotlinScriptConfigFormatParser @Inject constructor(
+        private val jacksonService: JacksonService,
+        private val scriptHost: BQConfigurationScriptHost
+) : ConfigurationFormatParser {
 
-    @Test
-    fun `execute simple script config file`() {
-        val compiler = BQConfigurationScriptHostProvider().get()
-        val resource = URLClassLoader.getSystemResource("sample.bq.kts")
-        val result = compiler.eval(resource.openStream())
+    override fun parse(stream: InputStream): JsonNode {
+        val result = scriptHost.eval(stream)
+        val newObjectMapper = jacksonService.newObjectMapper()
+        return newObjectMapper.valueToTree(result.getAll())
+    }
 
-        assertNotNull(result)
-
-        assertEquals("Allons-y!", result["sample"])
+    override fun shouldParse(url: URL, contentType: String?): Boolean {
+        return url.path.endsWith(".bq.kts")
     }
 }

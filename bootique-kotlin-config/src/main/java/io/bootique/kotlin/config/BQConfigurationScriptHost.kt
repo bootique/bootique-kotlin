@@ -18,23 +18,35 @@
  */
 package io.bootique.kotlin.config
 
-import java.net.URL
+import java.io.ByteArrayOutputStream
+import java.io.InputStream
 import javax.inject.Provider
 import kotlin.script.experimental.api.valueOrThrow
-import kotlin.script.experimental.host.UrlScriptSource
+import kotlin.script.experimental.host.StringScriptSource
 import kotlin.script.experimental.jvmhost.BasicJvmScriptingHost
 
 interface BQConfigurationScriptHost {
-    fun eval(url: URL): BQConfigurationScript
+    fun eval(stream: InputStream): BQConfigurationScript
 }
 
 internal class DefaultBQConfigurationScriptHost(
     private val scriptingHost: BasicJvmScriptingHost
 ) : BQConfigurationScriptHost {
-    override fun eval(url: URL): BQConfigurationScript {
-        val result = scriptingHost.evalWithTemplate<ScriptingBQConfigurationScript>(UrlScriptSource(url))
+    override fun eval(stream: InputStream): BQConfigurationScript {
+        val script = readSource(stream)
+        val result = scriptingHost.evalWithTemplate<ScriptingBQConfigurationScript>(StringScriptSource(script))
         @Suppress("UNCHECKED_CAST")
         return result.valueOrThrow().returnValue.scriptInstance as ScriptingBQConfigurationScript
+    }
+
+    private fun readSource(stream: InputStream): String {
+        val result = ByteArrayOutputStream()
+        val buffer = ByteArray(1024)
+        var length = 0
+        while (stream.read(buffer).also { length = it } != -1) {
+            result.write(buffer, 0, length)
+        }
+        return result.toString("UTF-8")
     }
 }
 
