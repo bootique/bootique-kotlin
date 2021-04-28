@@ -35,16 +35,6 @@
         Provides extension function and features for smooth development with Bootique Jetty and Kotlin.
     </description>
 
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>io.bootique.jetty</groupId>
-                <artifactId>bootique-jetty</artifactId>
-                <version>${bootique.version}</version>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
-
     <dependencies>
         <!-- Unit test dependencies -->
         <dependency>
