@@ -87,7 +87,7 @@ If you'd like to use snapshot versions, you have to add bootique snapshot reposi
 
 [source]
 ----
-https://oss.jfrog.org/artifactory/libs-snapshot
+https://oss.sonatype.org/content/repositories/snapshots
 ----
 
 For example in gradle it can be done this way:

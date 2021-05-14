@@ -40,7 +40,7 @@
     <pluginRepositories>
         <pluginRepository>
             <id>bootique-snapshots</id>
-            <url>https://oss.jfrog.org/artifactory/libs-snapshot</url>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
             <releases>
                 <enabled>false</enabled>
             </releases>
