@@ -19,18 +19,13 @@
 
 package io.bootique.kotlin.jackson
 
-import io.bootique.test.junit.BQModuleProviderChecker
-import org.junit.Test
+import io.bootique.junit5.BQModuleProviderChecker
+import org.junit.jupiter.api.Test
 
-/**
- * @author Ibragimov Ruslan
- * @since 0.25
- */
 class KotlinJacksonServiceModuleProviderTest {
 
     @Test
     fun testAutoLoadable() {
-        BQModuleProviderChecker
-            .testAutoLoadable(KotlinJacksonServiceModuleProvider::class.java)
+        BQModuleProviderChecker.testAutoLoadable(KotlinJacksonServiceModuleProvider::class.java)
     }
 }

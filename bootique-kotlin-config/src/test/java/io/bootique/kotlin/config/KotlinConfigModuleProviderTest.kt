@@ -19,14 +19,10 @@
 
 package io.bootique.kotlin.config
 
+import io.bootique.junit5.BQModuleProviderChecker
 import io.bootique.kotlin.config.modules.KotlinConfigModuleProvider
-import io.bootique.test.junit.BQModuleProviderChecker
-import org.junit.Test
+import org.junit.jupiter.api.Test
 
-/**
- * @author Ibragimov Ruslan
- * @since 0.25
- */
 class KotlinConfigModuleProviderTest {
 
     @Test

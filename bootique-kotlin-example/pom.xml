@@ -36,12 +36,31 @@
     </description>
 
     <dependencies>
-        <!-- Unit test dependencies -->
+        <!-- Compile dependencies -->
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <scope>test</scope>
+            <groupId>io.bootique</groupId>
+            <artifactId>bootique</artifactId>
         </dependency>
+        <dependency>
+            <groupId>io.bootique.kotlin</groupId>
+            <artifactId>bootique-kotlin-jetty</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.bootique.kotlin</groupId>
+            <artifactId>bootique-kotlin-logback</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jetbrains.kotlin</groupId>
+            <artifactId>kotlin-stdlib-jdk8</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.jetbrains.kotlin</groupId>
+            <artifactId>kotlin-scripting-jvm-host</artifactId>
+        </dependency>
+
+        <!-- Unit test dependencies -->
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
@@ -49,42 +68,13 @@
         </dependency>
         <dependency>
             <groupId>io.bootique</groupId>
-            <artifactId>bootique-test</artifactId>
+            <artifactId>bootique-junit5</artifactId>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-simple</artifactId>
             <scope>test</scope>
-        </dependency>
-
-        <!-- Compile dependencies -->
-        <dependency>
-            <groupId>io.bootique</groupId>
-            <artifactId>bootique</artifactId>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>io.bootique.kotlin</groupId>
-            <artifactId>bootique-kotlin-jetty</artifactId>
-            <version>${project.version}</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>io.bootique.kotlin</groupId>
-            <artifactId>bootique-kotlin-logback</artifactId>
-            <version>${project.version}</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.jetbrains.kotlin</groupId>
-            <artifactId>kotlin-stdlib-jdk8</artifactId>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.jetbrains.kotlin</groupId>
-            <artifactId>kotlin-scripting-jvm-host</artifactId>
-            <scope>compile</scope>
         </dependency>
     </dependencies>
 

@@ -22,9 +22,9 @@ package io.bootique.kotlin.config.jetty
 import io.bootique.jetty.connector.PortFactory
 import io.bootique.jetty.server.ServerFactory
 import io.bootique.kotlin.config.ScriptingBQConfigurationScript
-import org.junit.Assert.assertEquals
-import org.junit.Assert.assertNotNull
-import org.junit.Test
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertNotNull
+import org.junit.jupiter.api.Test
 
 class JettyModuleTest {
     @Test

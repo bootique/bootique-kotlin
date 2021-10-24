@@ -25,8 +25,8 @@ import io.bootique.kotlin.core.KotlinBootique
 import io.bootique.kotlin.di.KotlinBinder
 import io.bootique.kotlin.di.KotlinModule
 import io.bootique.kotlin.extra.config
-import org.junit.Assert.assertEquals
-import org.junit.Test
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Test
 import javax.inject.Singleton
 
 /**

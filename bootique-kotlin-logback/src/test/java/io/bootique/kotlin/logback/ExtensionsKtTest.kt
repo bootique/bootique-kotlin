@@ -19,13 +19,9 @@
 
 package io.bootique.kotlin.logback
 
-import org.junit.Assert.assertEquals
-import org.junit.Test
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Test
 
-/**
- * @author Ibragimov Ruslan
- * @since 0.25
- */
 class ExtensionsKtTest {
     @Test
     fun testLogger() {

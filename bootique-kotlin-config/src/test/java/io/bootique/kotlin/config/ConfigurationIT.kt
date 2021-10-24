@@ -8,9 +8,9 @@ import io.bootique.junit5.BQApp
 import io.bootique.value.Bytes
 import io.bootique.value.Duration
 import io.bootique.value.Percent
-import org.junit.Test
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertNotNull
+import org.junit.jupiter.api.Test
 
 
 class ConfigurationIT {

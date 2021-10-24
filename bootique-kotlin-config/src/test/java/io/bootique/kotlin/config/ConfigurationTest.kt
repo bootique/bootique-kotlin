@@ -20,8 +20,8 @@
 package io.bootique.kotlin.config
 
 import io.bootique.kotlin.config.modules.config
-import org.junit.Assert.assertEquals
-import org.junit.Test
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Test
 
 /**
  * @author Ruslan Ibragimov
