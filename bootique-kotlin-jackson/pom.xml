@@ -72,24 +72,10 @@
             <groupId>io.bootique.kotlin</groupId>
             <artifactId>bootique-kotlin</artifactId>
             <version>${bootique.version}</version>
-            <scope>compile</scope>
         </dependency>
-
         <dependency>
             <groupId>com.fasterxml.jackson.module</groupId>
             <artifactId>jackson-module-kotlin</artifactId>
-            <scope>compile</scope>
-        </dependency>
-        <!-- Note that the following two dependencies are also included transitively via Bootique core. -->
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-core</artifactId>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-            <scope>compile</scope>
         </dependency>
 
         <!-- Unit test dependencies -->
