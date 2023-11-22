@@ -29,7 +29,7 @@
 
     <groupId>io.bootique.kotlin</groupId>
     <artifactId>bootique-kotlin-parent</artifactId>
-    <version>3.0.M3-SNAPSHOT</version>
+    <version>3.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>bootique-kotlin-parent: Parent of Kotlin/Bootique integration</name>
