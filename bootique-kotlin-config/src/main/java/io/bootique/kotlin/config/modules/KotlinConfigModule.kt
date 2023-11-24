@@ -19,26 +19,23 @@
 
 package io.bootique.kotlin.config.modules
 
+//import io.bootique.kotlin.config.KotlinScriptConfigurationFactory
 import io.bootique.BQCoreModule
-import io.bootique.config.ConfigurationFactory
-import io.bootique.config.jackson.parser.*
 import io.bootique.kotlin.config.BQConfigurationScriptHost
 import io.bootique.kotlin.config.BQConfigurationScriptHostProvider
 import io.bootique.kotlin.config.KotlinScriptConfigFormatParser
-//import io.bootique.kotlin.config.KotlinScriptConfigurationFactory
 import io.bootique.kotlin.di.KotlinBinder
 import io.bootique.kotlin.di.KotlinModule
 
 /**
  * Module for overriding default JsonNodeConfigurationFactory.
  *
- * @author Ibragimov Ruslan
- * @since 0.1
+ * @deprecated No longer supported. Kotlin users should be able to use "regular" Java Bootique API
  */
+@Deprecated(message = "deprecated since 3.0. Won't be a part of 4.0")
 class KotlinConfigModule : KotlinModule {
     override fun configure(binder: KotlinBinder) {
         binder.bind(BQConfigurationScriptHost::class).toProvider(BQConfigurationScriptHostProvider::class).asSingleton()
-//        binder.bind(ConfigurationFactory::class).to(KotlinScriptConfigurationFactory::class).asSingleton()
         BQCoreModule.extend(binder).addConfigFormatParser(KotlinScriptConfigFormatParser::class.java)
     }
 }

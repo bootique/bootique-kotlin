@@ -33,9 +33,9 @@ import kotlin.reflect.KClass
 /**
  * A Kotlin version of main launcher class of [Bootique].
  *
- * @author Ibragimov Ruslan
- * @since 0.25
+ * @deprecated No longer supported. Kotlin users should be able to use "regular" Java Bootique API
  */
+@Deprecated(message = "deprecated since 3.0. Won't be a part of 4.0")
 interface KotlinBootiqueInterface {
     /**
      * [Bootique.bootLogger]

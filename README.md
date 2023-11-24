@@ -20,7 +20,11 @@
 [![build test deploy](https://github.com/bootique/bootique-kotlin/actions/workflows/maven.yml/badge.svg)](https://github.com/bootique/bootique-kotlin/actions/workflows/maven.yml)
 [![Maven Central](https://img.shields.io/maven-central/v/io.bootique.kotlin/bootique-kotlin.svg?colorB=brightgreen)](https://search.maven.org/artifact/io.bootique.kotlin/bootique-kotlin/)
 
-# Bootique Kotlin
+# bootique-kotlin
+
+**WARNING: the last release of Bootique that supports "bootique-kotlin" is 3.0. It is currently deprecated, and will 
+be removed from Bootique 4.0. We recommend Kotlin developers to switch to the "regular" Bootique API, or to fork this 
+module and support it on their own.**
 
 Provides extension function and features for smooth development with [Bootique](http://bootique.io/) and [Kotlin](http://kotlinlang.org/).
 

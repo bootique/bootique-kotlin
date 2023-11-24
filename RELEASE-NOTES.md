@@ -1,3 +1,7 @@
+## 3.0-M3
+
+* #20 Deprecate Kotlin integration
+
 ## 2.0.B1
 
 * #12 Update to Kotlin 1.4

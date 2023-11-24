@@ -34,10 +34,9 @@ import kotlin.reflect.KClass
 
 /**
  * Configuration DSL for LogbackModule.
- *
- * @author Ibragimov Ruslan
- * @since 0.25
+ * @deprecated No longer supported. Kotlin users should be able to use "regular" Java Bootique API
  */
+@Deprecated(message = "deprecated since 3.0. Won't be a part of 4.0")
 fun logbackContextFactory(
     logFormat: String,
     level: LogbackLevel = LogbackLevel.info,

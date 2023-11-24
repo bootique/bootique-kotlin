@@ -27,10 +27,9 @@ import io.bootique.kotlin.config.modules.FactoryDSL
 
 /**
  * Configuration DSL for JettyModule.
- *
- * @author Ibragimov Ruslan
- * @since 0.1
+ * @deprecated No longer supported. Kotlin users should be able to use "regular" Java Bootique API
  */
+@Deprecated(message = "deprecated since 3.0. Won't be a part of 4.0")
 inline fun ScriptingBQConfigurationScript.jetty(body: (@FactoryDSL ServerFactory).() -> Unit) {
     this.addConfig("jetty", ServerFactory().also { factory ->
         body(factory)

@@ -25,7 +25,9 @@ import kotlin.reflect.KClass
 
 /**
  * @since 2.0
+ * @deprecated No longer supported. Kotlin users should be able to use "regular" Java Bootique API
  */
+@Deprecated(message = "deprecated since 3.0. Won't be a part of 4.0")
 interface KotlinModule : BQModule {
     /**
      * Use KotlinModule#configure(KotlinBinder)

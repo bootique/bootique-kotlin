@@ -20,14 +20,14 @@
 package io.bootique.kotlin.jackson
 
 import io.bootique.BQCoreModule
+import io.bootique.Bootique
 import io.bootique.kotlin.core.KotlinBQModuleProvider
 
 /**
  * [KotlinBQModuleProvider] for [KotlinJacksonConfigModule].
- *
- * @author Ibragimov Ruslan
- * @since 0.25
+ * @deprecated No longer supported. Kotlin users should be able to use "regular" Java Bootique API
  */
+@Deprecated(message = "deprecated since 3.0. Won't be a part of 4.0")
 class KotlinJacksonServiceModuleProvider : KotlinBQModuleProvider {
     override val module = KotlinJacksonServiceModule()
     override val overrides = listOf(BQCoreModule::class)

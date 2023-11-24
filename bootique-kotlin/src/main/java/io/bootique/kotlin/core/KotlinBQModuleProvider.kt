@@ -20,6 +20,7 @@
 package io.bootique.kotlin.core
 
 import io.bootique.BQModuleProvider
+import io.bootique.Bootique
 import io.bootique.bootstrap.BuiltModule
 import io.bootique.di.BQModule
 import java.lang.Deprecated
@@ -28,10 +29,9 @@ import kotlin.reflect.KClass
 
 /**
  * Helper class to use APIs native to Kotlin in Bootique DI.
- *
- * @author Ibragimov Ruslan
- * @since 0.25
+ * @deprecated No longer supported. Kotlin users should be able to use "regular" Java Bootique API
  */
+@Deprecated(since = "3.0", forRemoval = true)
 interface KotlinBQModuleProvider : BQModuleProvider {
     val module: BQModule
 
