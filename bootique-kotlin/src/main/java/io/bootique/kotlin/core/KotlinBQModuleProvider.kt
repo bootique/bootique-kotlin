@@ -22,6 +22,7 @@ package io.bootique.kotlin.core
 import io.bootique.BQModuleProvider
 import io.bootique.bootstrap.BuiltModule
 import io.bootique.di.BQModule
+import java.lang.Deprecated
 import java.lang.reflect.Type
 import kotlin.reflect.KClass
 
@@ -63,6 +64,7 @@ interface KotlinBQModuleProvider : BQModuleProvider {
     val dependencies: Collection<BQModuleProvider>
         get() = listOf()
 
+    @Deprecated(since = "3.0", forRemoval = true)
     override fun dependencies(): Collection<BQModuleProvider> {
         return dependencies
     }
