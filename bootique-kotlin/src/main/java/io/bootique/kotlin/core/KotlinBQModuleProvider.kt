@@ -20,6 +20,7 @@
 package io.bootique.kotlin.core
 
 import io.bootique.BQModuleProvider
+import io.bootique.bootstrap.BuiltModule
 import io.bootique.di.BQModule
 import java.lang.reflect.Type
 import kotlin.reflect.KClass
@@ -33,16 +34,16 @@ import kotlin.reflect.KClass
 interface KotlinBQModuleProvider : BQModuleProvider {
     val module: BQModule
 
-    override fun module(): BQModule {
-        return module
+    override fun buildModule(): BuiltModule {
+        return BuiltModule.of(module)
+            .providerName(name)
+            .configs(configs)
+            .overrides(overrides.map { it.java })
+            .build();
     }
 
     val configs: Map<String, Type>
         get() = mapOf()
-
-    override fun configs(): Map<String, Type> {
-        return configs
-    }
 
     /**
      * Property for more native to Kotlin usage.
@@ -50,19 +51,11 @@ interface KotlinBQModuleProvider : BQModuleProvider {
     val name: String
         get() = ""
 
-    override fun name(): String {
-        return name
-    }
-
     /**
      * Provide property instead of function to use [KClass] instead of [Class].
      */
     val overrides: Collection<KClass<out BQModule>>
         get() = listOf()
-
-    override fun overrides(): Collection<Class<out BQModule>> {
-        return overrides.map { it.java }
-    }
 
     /**
      * Property for more native to Kotlin usage.
