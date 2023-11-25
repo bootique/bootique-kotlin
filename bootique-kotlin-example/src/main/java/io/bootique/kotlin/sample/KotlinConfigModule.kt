@@ -26,7 +26,7 @@ import io.bootique.jetty.JettyModuleProvider
 import io.bootique.kotlin.config.modules.KotlinConfigModuleProvider
 import io.bootique.kotlin.core.KotlinBQModuleProvider
 import io.bootique.kotlin.extra.config
-import io.bootique.logback.LogbackModuleProvider
+import io.bootique.logback.LogbackModule
 import javax.inject.Singleton
 
 data class AppConfiguration(
@@ -37,7 +37,7 @@ class KotlinSampleModuleProvider : KotlinBQModuleProvider {
     override val module = KotlinSampleModule()
     override val dependencies = listOf(
         JettyModuleProvider(),
-        LogbackModuleProvider(),
+        LogbackModule(),
         KotlinConfigModuleProvider()
     )
 }
