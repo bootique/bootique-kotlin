@@ -20,8 +20,7 @@
 package io.bootique.kotlin.core
 
 import io.bootique.BQModuleProvider
-import io.bootique.Bootique
-import io.bootique.bootstrap.BuiltModule
+import io.bootique.ModuleCrate
 import io.bootique.di.BQModule
 import java.lang.Deprecated
 import java.lang.reflect.Type
@@ -35,8 +34,8 @@ import kotlin.reflect.KClass
 interface KotlinBQModuleProvider : BQModuleProvider {
     val module: BQModule
 
-    override fun buildModule(): BuiltModule {
-        return BuiltModule.of(module)
+    override fun moduleCrate(): ModuleCrate {
+        return ModuleCrate.of(module)
             .providerName(name)
             .configs(configs)
             .overrides(overrides.map { it.java })
