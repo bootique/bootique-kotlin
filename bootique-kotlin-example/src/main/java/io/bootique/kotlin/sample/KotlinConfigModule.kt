@@ -22,11 +22,8 @@ package io.bootique.kotlin.sample
 import io.bootique.ConfigModule
 import io.bootique.config.ConfigurationFactory
 import io.bootique.di.Provides
-import io.bootique.jetty.JettyModuleProvider
-import io.bootique.kotlin.config.modules.KotlinConfigModuleProvider
 import io.bootique.kotlin.core.KotlinBQModuleProvider
 import io.bootique.kotlin.extra.config
-import io.bootique.logback.LogbackModule
 import javax.inject.Singleton
 
 data class AppConfiguration(
@@ -35,11 +32,6 @@ data class AppConfiguration(
 
 class KotlinSampleModuleProvider : KotlinBQModuleProvider {
     override val module = KotlinSampleModule()
-    override val dependencies = listOf(
-        JettyModuleProvider(),
-        LogbackModule(),
-        KotlinConfigModuleProvider()
-    )
 }
 
 class KotlinSampleModule : ConfigModule() {

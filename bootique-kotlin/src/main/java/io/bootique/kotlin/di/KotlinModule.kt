@@ -19,6 +19,7 @@
 
 package io.bootique.kotlin.di;
 
+import io.bootique.BQModule
 import io.bootique.di.*
 import javax.inject.Provider
 import kotlin.reflect.KClass
