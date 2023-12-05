@@ -19,16 +19,16 @@
 
 package io.bootique.kotlin.config.undertow
 
-import io.bootique.Bootique
 import io.bootique.undertow.UndertowFactory
 import io.bootique.undertow.config.HttpListener
 import io.bootique.undertow.config.HttpsListener
 
 /**
  * Configuration DSL for UndertowModule.
- * @deprecated No longer supported. Kotlin users should be able to use "regular" Java Bootique API
+ *
+ * @author Ibragimov Ruslan
+ * @since 0.25
  */
-@Deprecated(message = "deprecated since 3.0. Won't be a part of 4.0")
 fun undertowFactory(
     httpListeners: List<HttpListener> = listOf(),
     httpsListeners: List<HttpsListener> = listOf(),

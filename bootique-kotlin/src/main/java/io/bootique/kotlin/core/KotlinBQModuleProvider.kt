@@ -19,17 +19,17 @@
 
 package io.bootique.kotlin.core
 
-import io.bootique.BQModule
 import io.bootique.BQModuleProvider
-import java.lang.Deprecated
+import io.bootique.di.BQModule
 import java.lang.reflect.Type
 import kotlin.reflect.KClass
 
 /**
  * Helper class to use APIs native to Kotlin in Bootique DI.
- * @deprecated No longer supported. Kotlin users should be able to use "regular" Java Bootique API
+ *
+ * @author Ibragimov Ruslan
+ * @since 0.25
  */
-@Deprecated(since = "3.0", forRemoval = true)
 interface KotlinBQModuleProvider : BQModuleProvider {
     val module: BQModule
 
@@ -70,7 +70,6 @@ interface KotlinBQModuleProvider : BQModuleProvider {
     val dependencies: Collection<BQModuleProvider>
         get() = listOf()
 
-    @Deprecated(since = "3.0", forRemoval = true)
     override fun dependencies(): Collection<BQModuleProvider> {
         return dependencies
     }

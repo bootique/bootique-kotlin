@@ -19,8 +19,12 @@
 
 package io.bootique.kotlin.core
 
-import io.bootique.*
+import io.bootique.BQModuleOverrideBuilder
+import io.bootique.BQModuleProvider
+import io.bootique.BQRuntime
+import io.bootique.Bootique
 import io.bootique.command.CommandOutcome
+import io.bootique.di.BQModule
 import io.bootique.di.Key
 import io.bootique.log.BootLogger
 import io.bootique.shutdown.ShutdownManager
@@ -29,9 +33,9 @@ import kotlin.reflect.KClass
 /**
  * A Kotlin version of main launcher class of [Bootique].
  *
- * @deprecated No longer supported. Kotlin users should be able to use "regular" Java Bootique API
+ * @author Ibragimov Ruslan
+ * @since 0.25
  */
-@Deprecated(message = "deprecated since 3.0. Won't be a part of 4.0")
 interface KotlinBootiqueInterface {
     /**
      * [Bootique.bootLogger]
