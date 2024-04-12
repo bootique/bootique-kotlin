@@ -22,10 +22,16 @@
 
 # bootique-kotlin
 
-**WARNING: the last release of Bootique that supports "bootique-kotlin" is 3.0. It is currently deprecated, and will 
-be removed from Bootique 4.0. We recommend Kotlin developers to switch to the "regular" Bootique API, or to fork this 
-module and support it on their own.**
+**WARNING: the last release line that supports "bootique-kotlin" is 2.x. It is not distributed (or compatible) with Bootique 3.0 and newer.**
 
 Provides extension function and features for smooth development with [Bootique](http://bootique.io/) and [Kotlin](http://kotlinlang.org/).
 
 [Getting started and Documentation](https://bootique.io/docs/latest/bootique-kotlin-docs/).
+
+## FAQ
+
+1. But can I still use Bootique in my Kotlin project?
+Yes, just use the vanilla Java runtime without the special extensions
+
+2. I like the extensions provided by "bootique-kotlin", can you return them back?
+Bootique maintainers will be  open to this if indeed there is a real interest, real use cases, and especially, if someone is willing to be the maintainer / champion of this module going forward. If you are considering this, please send us a note [here](https://github.com/bootique/bootique-kotlin/issues) or via the Bootique Twitter. Or you can also fork it, and maintain on your own.
