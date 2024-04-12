@@ -17,12 +17,11 @@
   under the License.
   -->
 
-[![build test deploy](https://github.com/bootique/bootique-kotlin/actions/workflows/maven.yml/badge.svg)](https://github.com/bootique/bootique-kotlin/actions/workflows/maven.yml)
 [![Maven Central](https://img.shields.io/maven-central/v/io.bootique.kotlin/bootique-kotlin.svg?colorB=brightgreen)](https://search.maven.org/artifact/io.bootique.kotlin/bootique-kotlin/)
 
 # bootique-kotlin
 
-**WARNING: the last version of Bootique that supports `bootique-kotlin` is 2.x. It is not distributed (or compatible) with Bootique 3.0 or newer.**
+**WARNING: the last version of Bootique that supports `bootique-kotlin` is 2.x (ok, technically, 3.0.M2). It is not distributed (or compatible) with Bootique 3.0 or newer.**
 
 Provides extension function and features for smooth development with [Bootique](http://bootique.io/) and [Kotlin](http://kotlinlang.org/).
 
