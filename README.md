@@ -17,6 +17,7 @@
   under the License.
   -->
 
+[![build test deploy](https://github.com/bootique/bootique-kotlin/actions/workflows/maven.yml/badge.svg)](https://github.com/bootique/bootique-kotlin/actions/workflows/maven.yml)
 [![Maven Central](https://img.shields.io/maven-central/v/io.bootique.kotlin/bootique-kotlin.svg?colorB=brightgreen)](https://search.maven.org/artifact/io.bootique.kotlin/bootique-kotlin/)
 
 # bootique-kotlin

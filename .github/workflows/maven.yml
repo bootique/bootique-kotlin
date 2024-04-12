@@ -1,6 +1,6 @@
 name: 'build test deploy'
 
- on:
+on:
   push:
     branches: [ master ]
 
