@@ -34,6 +34,6 @@ _But can I still use Kotlin in my Bootique project?_
 
 Yes, just use the "Java" Bootique without Kotlin extensions
 
-_2. _I like the extensions provided by "bootique-kotlin", can you return them back?_
+_I like the extensions provided by "bootique-kotlin", can you return them back?_
 
 Bootique maintainers will be  open to this if indeed there is a real interest, real use cases, and especially, if someone is willing to be the maintainer / champion of this module going forward. If you are considering this, please send us a note [here](https://github.com/bootique/bootique-kotlin/issues) or via the Bootique Twitter. Or you can also fork it, and maintain on your own.
