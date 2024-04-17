@@ -15,7 +15,7 @@
 // specific language governing permissions and limitations
 // under the License.
 
-:bq-header: _index/header.html
+:hugo-header: _index/header.html
 
 = Kotlin Extensions for Bootique and Bootique Modules
 
