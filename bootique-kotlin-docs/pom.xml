@@ -31,9 +31,9 @@
     <packaging>jar</packaging>
 
     <properties>
-        <asciidoctorj.version>2.1.0</asciidoctorj.version>
-        <asciidoctor.maven.plugin.version>2.0.0-RC.1</asciidoctor.maven.plugin.version>
-        <jruby.version>9.2.8.0</jruby.version>
+        <asciidoctorj.version>2.5.12</asciidoctorj.version>
+        <asciidoctor.maven.plugin.version>2.2.6</asciidoctor.maven.plugin.version>
+        <hugo.asciidoctorj.extension.version>1.0-M2</hugo.asciidoctorj.extension.version>
         <bootique.snapshot.version>3.0.M2</bootique.snapshot.version>
     </properties>
 
@@ -58,23 +58,16 @@
                 <version>${asciidoctor.maven.plugin.version}</version>
                 <dependencies>
                     <dependency>
-                        <groupId>org.jruby</groupId>
-                        <artifactId>jruby-complete</artifactId>
-                        <version>${jruby.version}</version>
-                    </dependency>
-                    <dependency>
                         <groupId>org.asciidoctor</groupId>
                         <artifactId>asciidoctorj</artifactId>
                         <version>${asciidoctorj.version}</version>
                     </dependency>
-                    <!-- Using Cayenne asciidoc extension to inject custom headers -->
                     <dependency>
-                        <groupId>io.bootique.docs</groupId>
-                        <artifactId>bootique-asciidoc-internal</artifactId>
-                        <version>${bootique.version}</version>
+                        <groupId>io.bootique.tools</groupId>
+                        <artifactId>hugo-asciidoctorj-extension</artifactId>
+                        <version>${hugo.asciidoctorj.extension.version}</version>
                     </dependency>
                 </dependencies>
-
 
                 <executions>
                     <!-- generate "embeddable" html content with front matter and without header/footer/styles -->
@@ -93,14 +86,14 @@
                             <!-- this will inject header with "front-matter" markup -->
                             <extensions>
                                 <extension>
-                                    <className>io.bootique.docs.asciidoc.BootiquePostprocessor</className>
+                                    <className>io.bootique.tools.asciidoctorj.HugoExtension</className>
                                 </extension>
                             </extensions>
                             <attributes>
                                 <sectnums />
                                 <icons>font</icons>
                                 <toc>auto</toc>
-                                <bootique_version>3.0.M1</bootique_version>
+                                <bootique_version>3.0.M2</bootique_version>
                                 <kotlin_version>${kotlin.version}</kotlin_version>
                             </attributes>
                         </configuration>
